@@ -1,8 +1,9 @@
-﻿% -*- TeX:UTF-8 -*-
+%% TeX: UTF-8 
+%%
 %% POSTECH Thesis Template for LaTeX
 %%
-%% @version      0.1
-%% @releasedate  Aug 31th, 2015
+%% @version      0.6
+%% @releasedate  Mar. 2021
 %%
 %% @author       Junshin Park 박준신
 %%               mailto:lonelywing@postech.ac.kr
@@ -13,10 +14,10 @@
 %%
 %% 본 템플릿은 학사관리팀의 지원으로 진행되었습니다.
 %% 또한, 본 템플릿은 kaist latex Thesis template을 기반으로 작성되었음을 밝힙니다.
-
+%% Sae Hee Ryu의 지원이 한 스푼 들어갔습니다.
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{postech-ucs}%
-       [2015/8/11 v0.1 Standard POSTECH Thesis document class, ko.TeX version]
+%       [2020/7/9 v0.6 Standard POSTECH Thesis document class, ko.TeX version]
 
 %% 옵션 설정을 위한 boolean 변수선언
 \newif\if@isDoctor
@@ -44,12 +45,23 @@
 \ProcessOptions
 
 %% 11pt,onecolumn,oneside 옵션으로 report 클래스 불러오기
-\LoadClass[11pt,onecolumn,oneside]{report} % ver0.2 : 본문 글자 크기 11pt
+\LoadClass[11pt,onecolumn,oneside]{report} % ver0.3 : 본문 글자 크기 11pt
 
 
 %%들여쓰기
 \usepackage{indentfirst}
 \setlength\parindent{2.0em}
+
+%폰트 Times Roman으로 변경 (Times New Roman은 기본 패키지에 탑재되어 있지 않음.) ver0.5
+\renewcommand{\rmdefault}{ptm}
+
+%%zref package is used for page referencing.
+\usepackage{refcount}
+\usepackage[savepos,totpages,titleref,dotfill,counter,user]{zref}
+%\usepackage{zref-thepage}
+
+%\usepackage{tocloft}
+%\renewcommand{\cftchapfont}{\rmdefault}
 
 \RequirePackage{ifthen}       % 추가 패키지 설정
 
@@ -99,9 +111,17 @@
     \else \fi }
 \AtEndDocument{}                             % \end{document}와 함께 실행
 
-%% 편집용지 설정
-\usepackage[paperheight=255mm,paperwidth=185mm,
-			left=25mm,right=25mm,top=20mm,bottom=15mm]{geometry}
+%% 편집용지 설정 ver0.5
+\usepackage[paperheight=257mm,paperwidth=182mm,
+			left=25mm,right=25mm,top=35mm,bottom=30mm]{geometry}
+%상단여백 20
+%하단여백 15
+%머리말 15
+%꼬리말 15
+%왼쪽 25
+%오른쪽 25
+%top=상단여백+머리말 bottom=하단여백+꼬리말
+%용지 사이즈 JIS B5 257X182 (국내 4X6 배판)
 
 %% ver0.2 : blank page 정의
 \usepackage{afterpage}
@@ -113,7 +133,7 @@
 
 %% 줄간격 설정
 %\renewcommand{\baselinestretch}{1.3}
-\linespread{1.7}			% ver0.2 : 줄간격 170 이상
+\linespread{1.4}			% ver0.2 : 줄간격 170 이상
 
 %% 본문이 영어로 되어있는지 한글로 되어있는지 설정
 \newcommand{\@korean}{korean}
@@ -428,7 +448,7 @@
     \renewcommand{\baselinestretch}{1.3}%
    \thispagestyle{empty} \noindent%
     \begin{minipage}[t][][t]{\textwidth}
-   		\vspace{16mm}
+   		\vspace{2mm}
         \begin{center}
             \huge
             \if@isDoctor
@@ -436,21 +456,22 @@
             \else
                 \fontsize{16pt}{16pt}\selectfont Master's Thesis \\
             \fi
-			\vspace{21mm}
+			\vspace{23mm}
             \fontsize{21pt}{21pt}\selectfont \@titleEng
         \end{center}
     \end{minipage}\vfill%\\[30mm]
 \thispagestyle{empty} \noindent%
     \begin{minipage}[b][][b]{\textwidth}
-        \begin{center}
-			\fontsize{16pt}{9mm}\selectfont \@authorEng\ (\@authorKor)\\
-            \@affFullNameEngCover \\
-			\@postech \\
-			\@gradYear
-        \end{center}
-        \vspace{12mm}        
+        \begin{flushleft}
+        	\hspace{54.2pt}\@ifundefined{@authorKor}{
+	        	\fontsize{16pt}{9mm}\selectfont \@authorEng\\}
+		        {\fontsize{16pt}{9mm}\selectfont \@authorEng\ (\@authorKor)\\}
+            \hspace{54.2pt}\@affFullNameEngCover \\
+			\hspace{54.2pt}\@postech \\
+			\hspace{54.2pt}\@gradYear
+        \end{flushleft}
     \end{minipage}
-    \afterpage{\null\thispagestyle{empty}\newpage}           % ver0.2 : 첫 장 백색별지 추가 (지침사항은 아님)
+%    \afterpage{\null\thispagestyle{empty}\newpage}           % ver0.2 : 첫 장 백색별지 추가 (지침사항은 아님)
     \newpage   
 }
 
@@ -462,7 +483,7 @@
     \thispagestyle{empty} \noindent
 	%\\[0mm]
     \begin{minipage}[t][][t]{\textwidth}
-	    \vspace{15mm}
+	    \vspace{9mm}
         \begin{center}
             \fontsize{21pt}{21pt}\selectfont  \@titleKor \\
             \vspace{21pt}       % ver0.2 : 제목 줄간격
@@ -480,87 +501,69 @@
     \renewcommand{\baselinestretch}{1.3}
 %    \hyphenation{institute department division program} % word division 방지
     \thispagestyle{empty} \noindent
+   	\vspace{10mm}
     \begin{minipage}[t][][t]{\textwidth}
-    	\vspace{15mm}
         \begin{center}
             \fontsize{21pt}{21pt}\selectfont \@titleEng \\
-         \vspace{15mm}
-		 \Large by
          \end{center}
-    \end{minipage}\\[15mm]
+    \end{minipage}
+\vfill
     \thispagestyle{empty} \noindent
-    \begin{minipage}[t][][t]{\textwidth}
-        \Large
+    \begin{minipage}[b][][b]{\textwidth}
         \begin{center}
+	\Large by \\ \vspace{\baselineskip}
             \@authorEngGN \ \@authorEngFN \\  % 저자 영문이름
             \@affFullNameEngCover \\         % 학과/전공명 (표지용)
             \@postech                          % 학교명 POSTECH
-        \end{center}
-    \end{minipage}\\[15mm]
-    \thispagestyle{empty} \noindent
-    \begin{minipage}[t][][t]{\textwidth}
-    	\begin{center}
+\\ \vspace{\baselineskip}
     		\Large
     		\if@isDoctor
-				A dissertation submitted to the faculty of the \@postech\
-				in partial fulfillment of the requirements
-				for the degree of Doctor of philosophy in the \@programDeptNameEng
+				A dissertation submitted to the faculty of the \@postech\ in partial fulfillment of the requirements for the degree of Doctor of Philosophy in the \@programDeptNameEng
             \else
-				A thesis submitted to the faculty of the \@postech\
-				in partial fulfillment of the requirements
-				for the degree of \@degreeName in the \@programDeptNameEng
+				A thesis submitted to the faculty of the \@postech\ in partial fulfillment of the requirements for the degree of \@degreeName in the \@programDeptNameEng
             \fi
-	    \end{center}
-    \end{minipage}\\[30mm]
-    \begin{minipage}[t][][t]{\textwidth}
-        \begin{center}
+\\ \vspace{3\baselineskip}
             \Large
 			Pohang, Korea \\
 	        \@approvalMonth. \@approvalDay. \@approvalYear  \\ % 제출승인일자
 	        Approved by \\
 			 % 학위논문 지도교수 영문이름, 단독지도교수일 경우만 가정.
-            % \@advisorMajorEng \ (Signature) \\
-	        \@advisorMajorEng \ \textcolor{white}{(Signature)} \\ % ver0.2 : 서명란 글씨 흰색 (인쇄용)
+             \@advisorMajorEng \ (Signature) \\
+%            \@advisorMajorEng \ \textcolor{white}{(Signature)} \\ % ver0.2 : 서명란 글씨 흰색 (인쇄용)
 			Academic advisor
         \end{center}
-    \end{minipage}\\[0mm]
+    \end{minipage}
 
       % 학위논문 심사완료 검인서
-    \newpage \thispagestyle{empty} \noindent
+    \newpage 
+    \thispagestyle{empty} \noindent
     \begin{minipage}[t][][t]{\textwidth}
-  	    \vspace{15mm}
         \begin{center}
-            \fontsize{21pt}{21pt}\selectfont \@titleEng \\          % 학위논문 한글제목
-            \vspace{10mm}
-             \LARGE
-             \@authorEng
+		\fontsize{21pt}{21pt}\selectfont \@titleEng \\          % 학위논문 한글제목
         \end{center}
-    \end{minipage}\\[10mm]
-    \begin{minipage}[t][][t]{\textwidth}
-        \begin{center}
-        	\Large The undersigned have examined this \ifthenelse{\boolean{@isDoctor}}{dissertation}{thesis} and hereby certify
-            that it is worthy of acceptance for a \ifthenelse{\boolean{@isDoctor}}{doctoral}{master's} degree from POSTECH \\
-			\vspace{50mm}		
-	    \end{center}
-        \begin{flushright}
-            \Large
-            \@refereeMonth. \@refereeDay. \@refereeYear
-        \end{flushright}
-    \end{minipage}\\
+    \end{minipage}
+\vfill
+\noindent
     \begin{minipage}[b][][b]{\textwidth}
-        \Large
+        \begin{center}
+		\LARGE \@authorEng \\ \vspace{\baselineskip}
+        	\Large The undersigned have examined this \ifthenelse{\boolean{@isDoctor}}{dissertation}{thesis} and hereby certify that it is worthy of acceptance for a \ifthenelse{\boolean{@isDoctor}}{doctoral}{master's} degree from POSTECH \vspace{2\baselineskip}
+        \end{center}
+
         \begin{flushright}
-	\begin{tabular}{rll}   % 심사위원명단
+		\Large
+		\@refereeMonth. \@refereeDay. \@refereeYear \\ \vspace{2\baselineskip}
+	\begin{tabular}{r c r}   % 심사위원명단
                 \@ifundefined{@refereeChief}{}
-                    {\\[45pt] Committee Chair & \ \makebox[\width]{\@refereeChief}  & \ \textcolor{white}{(Seal)}}
+                    {\\[4pt] Committee Chair & \ \makebox[\width]{\@refereeChief}  & \ (Seal)}
                 \@ifundefined{@refereeSecond}{}
-                    {\\[10pt] Member   & \ \makebox[\width]{\@refereeSecond} & \ \textcolor{white}{(Seal)}}
+                    {\\[4pt] Member   & \ \makebox[\width]{\@refereeSecond} & \ (Seal)}
                 \@ifundefined{@refereeThird}{}
-                    {\\[10pt] Member   & \ \makebox[\width]{\@refereeThird}  & \ \textcolor{white}{(Seal)}}
+                    {\\[4pt] Member   & \ \makebox[\width]{\@refereeThird}  & \ (Seal)}
                 \@ifundefined{@refereeFourth}{}
-                    {\\[3pt] Member   & \ \makebox[\width]{\@refereeFourth} & \ (Seal)}
+                    {\\[4pt] Member   & \ \makebox[\width]{\@refereeFourth} & \ (Seal)}
                 \@ifundefined{@refereeFifth}{}
-                    {\\[3pt] Member   & \ \makebox[\width]{\@refereeFifth} & \ (Seal)}
+                    {\\[4pt] Member   & \ \makebox[\width]{\@refereeFifth} & \ (Seal)}
             \end{tabular}
         \end{flushright}
     \end{minipage}
@@ -573,8 +576,9 @@
 \newcounter{pagemarker}                           % 페이지 번호 임시 저장용
 \newcommand{\@lastPage}{\pageref{paperlastpagelabel}} % 총 페이지 수 계산용
 \renewenvironment{abstract}{%
+    %\thispagestyle{plain}
+    \thispagestyle{postech}
     \pagenumbering{Roman}                        % 로마자 페이지 시작
-    \thispagestyle{plain}
     \newcommand{\@tempbreak}{}                   % \linebreak 명령 보관용
     \let\@tempbreak\linebreak
     \renewcommand{\linebreak}{\ }                % \linebreak -> 공백 대체
@@ -582,7 +586,7 @@
     \setlength{\@thesisinfowidth}{\textwidth}    % 논문정보박스 사이즈는
     \addtolength{\@thesisinfowidth}{-30mm}       % 텍스트 폭보다 30mm 작게
     \noindent
-    \\[10mm]
+%    \\[10mm]
     \parbox[t]{30mm}{\large \@degreeCode \\ \@studentID}% 왼쪽박스
     %\raisebox{3pt}
     {\begin{minipage}[t]{\@thesisinfowidth}
@@ -590,28 +594,35 @@
 	    \large
         \ifthenelse{\equal{\@authorKorFN}{}}
         {}
-        {\@authorKorFN\ \@authorKorGN.}           % 저자 한글이름
+        {\@authorKorFN\ \@authorKorGN}           % 저자 한글이름
         \@authorEngGN\ \@authorEngFN \\           % 저자 영문이름
-        \@titleEng,  \\
-	    \@titleKor  \\                 % 학위논문 영문 및 한글제목
-        \@affFullNameEng, \@gradYear, \\          % 학과/전공명, 졸업년도
-        \@lastPage p,                            % 총 페이지 수 -> 참고문헌 끝
+        \@titleEng.  \\
+	    \@titleKor.  \\                 % 학위논문 영문 및 한글제목
+        \@affFullNameEng, \@gradYear,           % 학과/전공명, 졸업년도
+        \@lastPage p\\                            % 총 페이지 수 -> 참고문헌 끝
         \@ifundefined{@advisorCooprEng}         % 공동지도교수 유무판정
             {Advisor : ~\@advisorMajorEng.} % 단독지도교수 영문이름
-            {Advisors : ~\@advisorMajorEng, % 공동 주 지도교수 영문이름
-             Prof.~\@advisorCooprEng.}         % 공동 부 지도교수 영문이름
+            {Advisor : ~\@advisorCooprEng.}
+%%            {Advisors : ~\@advisorMajorEng, % 공동 주 지도교수 영문이름
+%%             Prof.~\@advisorCooprEng.}         % 공동 부 지도교수 영문이름
         \ifthenelse{\boolean{@isKorean}}
-            {}{Text in English.}               % 본문이 영어인 경우 명시
-    \end{minipage}}\\[22mm]
+            {}{\\Text in English.}               % 본문이 영어인 경우 명시
+    \end{minipage}}\\[17mm]
     \begin{center} \Large \textbf{ABSTRACT} \end{center}      % 초록명 -> Abstract
+    \vspace{8mm}
     \hspace*{5mm}
 %  \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{content}{\abstractname}% 초록을 목차(TOC)에 삽입
     \fontsize{11pt}{19pt}\selectfont
-}{  \setcounter{pagemarker}{\value{page}}        % 마지막 페이지 번호를 저장
-    \addtocounter{pagemarker}{1}                 % 백색별지분을 고려
-    \newpage \pagenumbering{arabic}              % 페이지 아라비아 숫자 포맷
-    \let\linebreak\@tempbreak                    % \linebreak 명령 복원
-    \afterpage{\blankpage}                      % % ver0.2 : 초록 이후 백색별지
+}
+{
+%	  \label{pg:abstractLastPage}  
+	  \newpage
+  	  \setcounter{pagemarker}{\value{page}}
+	  
+     %\pagenumbering{Roman}
+%\pagenumbering{arabic}              % 페이지 아라비아 숫자 포맷
+\let\linebreak\@tempbreak                    % \linebreak 명령 복원
+%    \afterpage{\blankpage}                      % % ver0.2 : 초록 이후 백색별지
 }
 
 %%
@@ -623,18 +634,30 @@
     \listoffigures
 }
 
+%%%% 부록 section을 위한...
+\renewenvironment{appendix}{
+	\setcounter{chapter}{0}
+	\renewcommand{\thechapter}{\Alph{chapter}}
+	\renewcommand{\thesection}{\Alph{chapter}.\arabic{section}} %ex) A.1
+	\renewcommand{\thefigure}{\Alph{chapter}.\arabic{figure}} %ex) A.1
+	\renewcommand{\thetable}{\Alph{chapter}.\arabic{table}} %ex) A.1
+	\renewcommand{\theequation}{\Alph{chapter}.\arabic{equation}} %ex) A.1
+}
+%%%%
+
+
 %%
 %% 한글요약문 생성 - 영문논문의 경우만 해당
 %%
 \newenvironment{summary}{%              % 요약문 생성 환경
-    \thispagestyle{plain}               % ver0.2 : 국문 요약문 쪽번호 유지
+    \thispagestyle{postech}               % ver0.2 : 국문 요약문 쪽번호 유지
     \newcommand{\@tempbreak}{}
     \let\@tempbreak\linebreak
     \renewcommand{\linebreak}{\ }      % \linebreak 명령 바꿔치기
     \if@isKorean
     \else
         \chapter*{Summary}
-        \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{Summary (in Korean)}
+        \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{\rmfamily{Summary (in Korean)}}
         \begin{quote}
             \begin{center}
                 \noindent \textsf{\Large \@titleEng} \\[6mm]
@@ -649,7 +672,7 @@
    	\setlength{\parindent}{10pt}
     \ifx\@textlang\@english
         \chapter*{요 약 문}
-        \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{Summary (in Korean)}
+        \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{\rmfamily{Summary (in Korean)}}
         \fontsize{11pt}{19pt} \selectfont
 %        \begin{center}
 %            \noindent\textsf{\Large \@titleKor} \\[6mm]
@@ -793,12 +816,13 @@
 		\begin{center}\large\textbf{Affiliation}\end{center}
 		\vspace{3mm}
         \begin{list}{}{%
-            \usecounter{itemnum1}
-            \setlength{\labelwidth}{1.5em}
+            \usecounter{itemnum1+1}
+            \setlength{\labelwidth}{95pt}
             \setlength{\leftmargin}{\labelwidth}
             \addtolength{\leftmargin}{\labelsep}
             \setlength{\parsep}{\z@}
-            \renewcommand{\makelabel}{\textgt{\arabic{itemnum1}.\ }}}
+%            \renewcommand{\makelabel}{\textgt{\arabic{itemnum1}.\ }}}
+            \renewcommand{\makelabel}[1]{\textgt{##1\hfill\ }}}
     }{\end{list}}
 
 %    \newcounter{itemnum2}
@@ -830,9 +854,9 @@
 \renewcommand{\bibname}{%
     \if@isKorean 참 고 문 헌 \else References      \fi}
 
-%%
-%% \part 재정의 - 아예 쓰지 못하게 막아버림. 이 명령을 호출하면 에러 발생.
-%%
+%%%
+%%% \part 재정의 - 아예 쓰지 못하게 막아버림. 이 명령을 호출하면 에러 발생.
+%%%
 \renewcommand\part{%
     \secdef\@part\@spart}
 \def\@part[#1]#2{%
@@ -849,6 +873,8 @@
 %%
 
 \renewcommand{\thechapter}{\Roman{chapter}} %Enumerate chapter as Roman number
+%\renewcommand{\thechapter}{\Roman{part}} %Enumerate chapter as Roman number
+%\renewcommand{\thechapter}{\arabic{chapter}} %Enumerate chapter as Roman number
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}} %Enumerate section as arabic number
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}} 	% ver0.2 : figure 번호를 아라비아 숫자로 표기
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}	% ver0.2 : table 번호를 아라비아 숫자로 표기	
@@ -861,12 +887,13 @@
     \@afterindentfalse
 %   \if@isKorean \parindent\z@ \else \fi % <-- 추가할지 여부 고민중
     \secdef\@chapter\@schapter}
+
 \def\@chapter[#1]#2{%
     \ifnum \c@secnumdepth >\m@ne
         \refstepcounter{chapter}%
         \typeout{\@chapapp\space\thechapter.}%
         \addcontentsline{toc}{chapter}{%
-        \protect\numberline{\thechapter.}#1
+        \protect \rmfamily{\numberline{\thechapter.}}#1
         }% <-- 목차에 나타나는 형식 - 변경사항
     \else
        \addcontentsline{toc}{chapter}{#1}%
@@ -875,6 +902,7 @@
     \chaptermark{#1}%
     \addtocontents{lof}{\protect\addvspace{10\p@}}%
     \addtocontents{lot}{\protect\addvspace{10\p@}}%
+    
     \if@twocolumn
         \@topnewpage[\@makechapterhead{#2}]%
     \else
@@ -885,6 +913,7 @@
 \def\@makechapterhead#1{% <-- 전체 변경
     \vspace*{10\p@}
     {\centering \parindent\z@ \LARGE\bfseries
+    %{\centering \parindent\z@ \LARGE\bfseries
 %    \ifthenelse{\equal{\@textlang}{korean}}
 %        {제\hspace{1.4ex}\thechapter\hspace{1.4ex}장\hspace{2ex}}
 %        {Chapter\hspace{1.4ex}\thechapter.\hspace{1ex}}
@@ -910,7 +939,9 @@
 %% \tableofcontents 재정의 - report 클래스로부터 복사하여 일부 수정
 %%
 \renewcommand\tableofcontents{%
-	\thispagestyle{plain}
+	%\thispagestyle{plain}
+	\thispagestyle{postech}
+    \pagenumbering{Roman}                        % 로마자 페이지 시작
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
@@ -918,7 +949,11 @@
     \fi
 	\chapter*{\contentsname
         \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
-    \pagenumbering{Roman}                         % roman 페이지번호로 복원
+%   \pagenumbering{arabic}                         % Roman 페이지번호로 복원
+
+%    \addtocounter{pagemarker}{1}
+% 	\setcounterpageref{page}{pg:abstractLastPage}
+%	\addtocounter{pagemarker}{1}
     \setcounter{page}{\value{pagemarker}}         % pagemarker에 저장된 값으로
 %    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{content}{\contentsname} % 목차(TOC)에 추가
     \@starttoc{toc}%
@@ -931,7 +966,9 @@
 %% \listoftables 재정의 - report 클래스로부터 복사하여 일부 수정
 %%
 \renewcommand\listoftables{%
-	\thispagestyle{plain}
+	%\thispagestyle{plain}
+	\thispagestyle{postech}
+    \pagenumbering{Roman}                        % 로마자 페이지 시작
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
@@ -939,20 +976,23 @@
     \fi
     \chapter*{\listtablename}%
     \@mkboth{\MakeUppercase\listtablename}{\MakeUppercase\listtablename}%
-    \pagenumbering{Roman}                         % roman 페이지번호로 복원
+%    \pagenumbering{arabic}                         % roman 페이지번호로 복원
     \setcounter{page}{\value{pagemarker}}         % pagemarker에 저장된 값으로
-    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{content}{\listtablename}% 목차(TOC)에 추가
+%    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{content}{\listtablename}% 목차(TOC)에 추가
+%    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{\listtablename}% 목차(TOC)에 추가
     \@starttoc{lot}%
     \if@restonecol\twocolumn\fi
     \newpage \setcounter{pagemarker}{\value{page}}% pagemarker에 다시 저장
-    \pagenumbering{arabic}                        % arabic 페이지번호로 재시작
+%    \pagenumbering{arabic}                        % arabic 페이지번호로 재시작
 }
 
 %%
 %% \listoffigures 재정의 - report 클래스로부터 복사하여 일부 수정
 %%
 \renewcommand\listoffigures{%
-	\thispagestyle{plain}
+	%\thispagestyle{plain}
+	\thispagestyle{postech}
+    \pagenumbering{Roman}                        % 로마자 페이지 시작
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
@@ -960,9 +1000,10 @@
     \fi
     \chapter*{\listfigurename}%
     \@mkboth{\MakeUppercase\listfigurename}{\MakeUppercase\listfigurename}%
-    \pagenumbering{Roman}                         % roman 페이지번호로 복원
+%    \pagenumbering{arabic}                         % roman 페이지번호로 복원
     \setcounter{page}{\value{pagemarker}}         % pagemarker에 저장된 값으로
-    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{content}{\listfigurename}% 목차(TOC)에 추가
+%    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{content}{\listfigurename}% 목차(TOC)에 추가
+%    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{\listfigurename}% 목차(TOC)에 추가
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
     \newpage \setcounter{pagemarker}{\value{page}}% pagemarker에 다시 저장
@@ -972,13 +1013,15 @@
 %%
 %% 목차에 나오는 형식 - report 클래스로부터 복사하여 일부 수정
 %%
-\newcommand{\l@content}{\normalsize\bf\@dottedtocline{1}{0em}{0em}}
+%\newcommand{\l@content}{\normalsize\bf\@dottedtocline{1}{0em}{0em}}
+\newcommand{\l@content}{\normalfont\normalsize\@dottedtocline{1}{0em}{0em}}
 
 \renewcommand*\l@chapter[2]{%
-    \thispagestyle{plain}           % ver0.2 : 목차 쪽번호 유지
+   % \thispagestyle{plain}           % ver0.2 : 목차 쪽번호 유지
+    \thispagestyle{postech}           % ver0.2 : 목차 쪽번호 유지
     \ifnum \c@tocdepth >\m@ne
         \addpenalty{-\@highpenalty}%
-        \vskip 1.7em \@plus\p@      % ver0.2 : 줄간격 조정 
+        \vskip 1.3em \@plus\p@      % ver0.2 : 줄간격 조정 
         \if@isKorean                     % <-- 변경 부분
             \setlength\@tempdima{5.0em} % korean  옵션일 때는 5.0em
         \else
@@ -990,7 +1033,7 @@
             \leavevmode \normalsize \sffamily \bfseries
             \advance\leftskip\@tempdima
             \hskip -\leftskip
-            #1\nobreak \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+            #1\nobreak \hfil \nobreak\hb@xt@\@pnumwidth{\hss\rmfamily #2}\par
             \penalty\@highpenalty
         \endgroup
     \fi}
@@ -1008,9 +1051,9 @@
 %% thebibliography 환경 재정의 - report 클래스로부터 복사하여 일부 수정
 %%
 \renewenvironment{thebibliography}[1]{%
-    \chapter*{\bibname}%
+    \chapter*{\rmfamily{\bibname}}%
     \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{\bibname}%
+    \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{\rmfamily{\bibname}}%
     \list{\@biblabel{\@arabic\c@enumiv}}%
         {\settowidth\labelwidth{\@biblabel{#1}}%
          \leftmargin\labelwidth
