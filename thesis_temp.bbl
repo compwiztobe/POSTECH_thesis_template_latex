@@ -1,0 +1,216 @@
+\begin{thebibliography}{10}
+
+\bibitem{imageUnderstanding:2013}
+Nam-Gyu Cho, Alan~L. Yuille, and Seong-Whan Lee.
+\newblock Adaptive occlusion state estimation for human pose tracking under
+  self-occlusions.
+\newblock {\em Pattern Recognition}, 46(3):649--661, 2013.
+
+\bibitem{actionRecognition:2013}
+Chunyu Wang, Yizhou Wang, and Alan~L. Yuille.
+\newblock An approach to pose-based action recognition.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, 0:915--922, 2013.
+
+\bibitem{PS_original:2005}
+Pedro~F. Felzenszwalb and Daniel~P. Huttenlocher.
+\newblock Pictorial structures for object recognition.
+\newblock {\em International Journal of Computer Vision (IJCV)}, 61(1):55--79,
+  January 2005.
+
+\bibitem{FMP:2011}
+Yi~Yang and D.~Ramanan.
+\newblock Articulated pose estimation with flexible mixtures-of-parts.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 1385--1392, 2011.
+
+\bibitem{pose_IDPR:2014}
+Xianjie Chen and Alan Yuille.
+\newblock Articulated pose estimation by a graphical model with image dependent
+  pairwise relations.
+\newblock In {\em Advances in Neural Information Processing Systems (NIPS)},
+  2014.
+
+\bibitem{pose_orientedContour:2012}
+Norimichi Ukita.
+\newblock Articulated pose estimation with parts connectivity using
+  discriminative local oriented contours.
+\newblock In {\em Proceedings of IEEE Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, pages 3154--3161, 2012.
+
+\bibitem{APM:2011}
+Min Sun and S.~Savarese.
+\newblock Articulated part-based model for joint object detection and pose
+  estimation.
+\newblock In {\em IEEE International Conference on Computer Vision (ICCV)},
+  pages 723--730, 2011.
+
+\bibitem{poselet_pose:2013}
+Leonid Pishchulin, Mykhaylo Andriluka, Peter Gehler, and Bernt Schiele.
+\newblock Poselet conditioned pictorial structures.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, June 2013.
+
+\bibitem{poselet_original:2009}
+Lubomir Bourdev and Jitendra Malik.
+\newblock Poselets: Body part detectors trained using 3d human pose
+  annotations.
+\newblock In {\em International Conference on Computer Vision (ICCV)}, 2009.
+
+\bibitem{unsupLocalization_INRIA:2015}
+Minsu Cho, Suha Kwak, Cordelia Schmid, and Jean Ponce.
+\newblock {Unsupervised Object Discovery and Localization in the Wild:
+  Part-based Matching with Bottom-up Region Proposals}.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, June 2015.
+
+\bibitem{proposal_edgeBoxes:2014}
+C.~Lawrence Zitnick and Piotr Doll\'ar.
+\newblock Edge boxes: Locating object proposals from edges.
+\newblock In {\em European Conference on Computer Vision (ECCV)}, 2014.
+
+\bibitem{dataset_LSP:2010}
+Sam Johnson and Mark Everingham.
+\newblock Clustered pose and nonlinear appearance models for human pose
+  estimation.
+\newblock In {\em Proceedings of the British Machine Vision Conference (BMVC)},
+  2010.
+
+\bibitem{dataset_Parse:2007}
+Deva Ramanan.
+\newblock Learning to parse images of articulated bodies.
+\newblock In B.~Sch\"{o}lkopf, J.~Platt, and T.~Hoffman, editors, {\em Advances
+  in Neural Information Processing Systems (NIPS)}, pages 1129--1136. 2007.
+
+\bibitem{pose_multiTree:2008}
+Yang Wang and Greg Mori.
+\newblock Multiple tree models for occlusion and spatial constraints in human
+  pose estimation.
+\newblock In David Forsyth, Philip Torr, and Andrew Zisserman, editors, {\em
+  European Conference on Computer Vision (ECCV)}, volume 5304, pages 710--724.
+  2008.
+
+\bibitem{PS_revisited:2009}
+Mykhaylo Andriluka, Stefan Roth, and Bernt Schiele.
+\newblock Pictorial structures revisited: People detection and articulated pose
+  estimation.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, June 2009.
+
+\bibitem{pose_latentTree:2013}
+Fang Wang and Yi~Li.
+\newblock Beyond physical connections: Tree models in human pose estimation.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 596--603. IEEE, 2013.
+
+\bibitem{detection_DPM:2010}
+P.F. Felzenszwalb, R.B. Girshick, D.~McAllester, and D.~Ramanan.
+\newblock Object detection with discriminatively trained part-based models.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  32(9):1627--1645, 2010.
+
+\bibitem{deformableModel:2006}
+Deva Ramanan and Cristian Sminchisescu.
+\newblock Training deformable models for localization.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 206--213, 2006.
+
+\bibitem{pose_loopy_occlusion:2006}
+Leonid Sigal and Michael~J. Black.
+\newblock Measure locally, reason globally: Occlusion-sensitive articulated
+  pose estimation.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 2041--2048, 2006.
+
+\bibitem{poselet_humanDetection:2010}
+Lubomir Bourdev, Subhransu Maji, Thomas Brox, and Jitendra Malik.
+\newblock Detecting people using mutually consistent poselet activations.
+\newblock In {\em European Conference on Computer Vision (ECCV)}, 2010.
+
+\bibitem{poselet_action:2010}
+Subhransu Maji, Lubomir Bourdev, and Jitendra Malik.
+\newblock Action recognition from a distributed representation of pose and
+  appearance.
+\newblock In {\em IEEE International Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, 2011.
+
+\bibitem{poselet_attribute:2011}
+Lubomir Bourdev, Subhransu Maji, and Jitendra Malik.
+\newblock Describing people: Poselet-based attribute classification.
+\newblock In {\em International Conference on Computer Vision (ICCV)}, 2011.
+
+\bibitem{poselet_actionWithLatentPose:2010}
+Weilong Yang, Yang Wang, and G.~Mori.
+\newblock Recognizing human actions from still images with latent poses.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 2030--2037, June 2010.
+
+\bibitem{poselet_humanParsing:2011}
+Yang Wang, Duan Tran, and Zicheng Liao.
+\newblock Learning hierarchical poselets for human parsing.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 1705--1712, 2011.
+
+\bibitem{pose_jointRegressor:2013}
+M.~Dantone, J.~Gall, C.~Leistner, and L.~van Gool.
+\newblock Human pose estimation using body parts dependent joint regressors.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 3041--3048, june 2013.
+
+\bibitem{pose_objectLocalization:2015}
+Jonathan Tompson, Ross Goroshin, Arjun Jain, Yann LeCun, and Christoph Bregler.
+\newblock Efficient object localization using convolutional networks.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, abs/1411.4280, 2014.
+
+\bibitem{proposal_iterativeLink:2009}
+Gunhee Kim and Antonio Torralba.
+\newblock Unsupervised detection of regions of interest using iterative link
+  analysis.
+\newblock In Y.~Bengio, D.~Schuurmans, J.D. Lafferty, C.K.I. Williams, and
+  A.~Culotta, editors, {\em Advances in Neural Information Processing Systems
+  (NIPS)}, pages 961--969. 2009.
+
+\bibitem{proposal_localizingObj:2010}
+Thomas Deselaers, Bogdan Alexe, and Vittorio Ferrari.
+\newblock Localizing objects while learning their appearance.
+\newblock In {\em European Conference on Computer Vision (ECCV)}, pages
+  452--466, 2010.
+
+\bibitem{proposal_colocalization:2014}
+Kevin Tang, Armand Joulin, Li-Jia Li, and Li~Fei-Fei.
+\newblock Co-localization in real-world images.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, 2014.
+
+\bibitem{proposal_objectness:2010}
+Bogdan Alexe, Thomas Deselaers, and Vittorio Ferrari.
+\newblock What is an object?
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 73--80, 2010.
+
+\bibitem{proposal_prime:2013}
+Santiago Man\'en, Matthieu Guillaumin, and Luc Van~Gool.
+\newblock Prime object proposals with randomized prim's algorithm.
+\newblock In {\em International Conference on Computer Vision (ICCV)}, December
+  2013.
+
+\bibitem{HOG}
+N.~Dalal and B.~Triggs.
+\newblock Histograms of oriented gradients for human detection.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, volume~1, pages 886--893, 2005.
+
+\bibitem{pose_searchSpaceReduction:2008}
+V.~Ferrari, M.~Marin-Jimenez, and A.~Zisserman.
+\newblock Progressive search space reduction for human pose estimation.
+\newblock In {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, 2008.
+
+\bibitem{fastEdgeDetection:2013}
+Piotr Doll{\'a}r and C.~Lawrence Zitnick.
+\newblock Structured forests for fast edge detection.
+\newblock In {\em International Conference on Computer Vision (ICCV)}, December
+  2013.
+
+\end{thebibliography}

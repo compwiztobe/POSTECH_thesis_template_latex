@@ -1,0 +1,984 @@
+% -*- TeX:UTF-8 -*-
+%%
+%% POSTECH 학위논문양식 LaTeX용 (ver 0.1) 예시
+%%
+%% @version 0.1
+%% @author  박준신 Junshin Park (mailto:lonelywing@postech.ac.kr)
+%% @date    2015. 8. 31.
+%%
+%% @requirement
+%% teTeX, fpTeX, teTeX 등의 LaTeX2e 배포판
+%% + 은광희 님의 HLaTeX 0.991 이상 버젼 또는 홍석호 님의 HPACK 1.0
+%% : 설치에 대한 자세한 정보는 http://www.ktug.or.kr을 참조바랍니다.
+%%
+%% @note
+%% 기존의 Kaist dissertation template을 바탕으로 작성되었습니다.
+%% 현재 수정중에 있고, 버그리포트는 위 저자의 이메일로 보내주시면 감사하겠습니다.
+%%
+%% @acknowledgement
+%% 본 latex template은 kaist 채승병님의 template을 바탕으로 만들어졌음을 밝힙니다.
+%%
+%% -------------------------------------------------------------------
+%% @information
+%% 이 예제 파일은 hangul-ucs를 사용합니다. UTF-8 입력 인코딩으로
+%% 작성되었습니다. hlatex의 hfont는 이용하지 않습니다. --2006/02/11
+
+% @class kaist.cls
+% @options [default: doctor, korean, final]
+% - doctor: 박사과정 | master : 석사과정
+% - korean: 한글논문 | english: 영문논문
+% - final : 최종판   | draft  : 시험판
+% - pdfdoc : 선택하지 않으면 북마크와 colorlink를 만들지 않습니다.
+\documentclass[master,english,final]{postech-ucs}
+% If you want make pdf document (include bookmark, colorlink)
+%\documentclass[doctor,english,final,pdfdoc]{kaist-ucs}
+
+% postech-ucs.cls 에서는 기본으로 dhucs, ifpdf, graphicx 패키지가 로드됩니다.
+% 추가로 필요한 패키지가 있다면 주석을 풀고 적어넣으십시오,
+%\usepackage{...}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{comment}
+% \usepackage{bbm}
+% \renewcommand{\thealgorithm}{}
+\newcommand{\argmax}{\operatornamewithlimits{arg\,max}}
+
+% @command title 논문 제목(title of thesis)
+% @options [default: (none)]
+% - korean: 한글제목(korean title) | english: 영문제목(english title)
+\title[korean] {파트 기반 영역 매칭을 이용한 사람 자세 추정}
+\title[english]{Human Pose Estimation using Part-based Region Matching}
+
+% @note 표지에 출력되는 제목을 강제로 줄바꿈하려면 \linebreak 을 삽입.
+%       \\ 나 \newline 등을 사용하면 안됩니다. (아래는 예시)
+%
+%\title[korean]{탄소 나노튜브의 물리적 특성에 대한\linebreak 이론 연구}
+%\title[english]{Theoretical study on physical properties of\linebreak
+%                carbon nanotubes}
+%
+% If you want to begin a new line in cover, use \linebreak .
+% See examples above.
+%
+
+
+% @command author 저자 이름
+% @param   family_name, given_name 성, 이름을 구분해서 입력
+% @options [default: (none)]
+% - korean: 한글이름 | chinese: 한문이름 | english: 영문이름
+%
+% If you are a foreigner (this means you have no korean name),
+% Write as follow
+% \author[korean]{}{}
+% \author[chinese]{family name in your native language}{given name in your native language}
+% \author[english]{family name in english}{given name in english}
+%
+\author[korean] {오}{수 영}
+\author[english]{Oh}{Sueyoung}
+
+% @command advisor 지도교수 이름 (복수가능)
+% @usage   \advisor[options]{...한글이름...}{...영문이름...}{signed|nosign}
+% @options [default: major]
+% - major: 주 지도교수  | coopr: 공동 지도교수
+\advisor[major]{한 준 희}{Joon Hee Han}{nosign}
+%\advisor[coopr]{홍 길 길}{Gilgil Hong}{nosign}
+%
+% 지도교수 한글이름은 입력하지 않아도 됩니다.
+% You may not input advisor's korean name
+% like this \advisor[major]{}{Chang, Kee Joo}{signed}
+%
+
+% 현재 학과명은 카이스트템플릿으로부터 수정되지 않은 상태입니다. 추후 업데이트를 하도록 하겠습니다.
+% @command department {학과이름}{학위종류} - 아래 표에 따라 코드를 입력
+% @command department {department code}{degree field}
+%
+% department code table
+%
+% PH		// 물리학과 Department of Physics
+% MAS	// 수리과학과 Department of Mathematical Sciences
+% CH 	// 화학과 Department of Chemistry
+% NST	// 나노과학기술대학원 Graduate School of Nanoscience & Technology
+% NT		// 나노과학기술 학제전공 Nano Science and Technology Program
+% BS  	// 생명과학과 Department of Biological Sciences
+% BIS	// 바이오및뇌공학과 Department of Bio and Brain Engineering
+% MSE	// 의과학대학원 Graduate School of Medical Science and Engineering
+% BM 	// 의과학 학제전공 Biomedical Science and Engineering Program
+% CE 	// 건설및환경공학과 Department of Civil and Environmental Engineering
+% ME 	// 기계공학전공 Division of Mechanical Engineering
+% AE 	// 항공우주공학전공 Division of Aerospace Engineering
+% OSE 	// 해양시스템공학전공 Department of Ocean Systems Engineering
+% CBE 	// 생명화학공학과 Department of Chemical and Biomolecular Engineering
+% MS 	// 신소재공학과 Department of Materials Science and Engineering
+% NQE 	// 원자력 및 양자공학과 Department of Nuclear and Quantum Engineering
+% EEW 	// EEWS 대학원 Graduate School of EEWS
+% PSE 	// 고분자 학제전공 Polymer Science and Engineering Program
+% SPE	// 우주탐사공학 학제전공 Space Exploration Engineering Program
+% ENY 	// 환경?에너지공학 학제전공 Environmental and Energy Technology Program
+% MSB 	// 경영과학과 Department of Management Science
+% IT 		// 경영과학과(IT경영학) Department of Management Science (IT Business)
+% BAP 	// 경영전문대학원프로그램 Master of Business Administration Program
+% ITP 	// 글로벌IT기술대학원프로그램 Global Information & Telecommunication Technology Program
+% ITM 	// 기술경영전문대학원 Graduate School of Innovation & Technology Management
+% GCT 	// 문화기술대학원 Graduate School of Culture Technology
+% CT 	// 문화기술(CT) 학제전공 Culture Technology Program
+% EE 	// 전기 및 전자공학과 Department of Electrical Engineering
+% CS 	// 전산학과 Department of Computer Science
+% ICE 	// 정보통신공학과 Department of Information and Communications Engineering
+% IE 		// 산업및시스템공학과 Department of Industrial & Systems Engineering
+% KSE 	// 지식서비스공학과 Department of Knowledge Service Engineering
+% ID 		// 산업디자인학과 Department of Industrial Design
+% RE 	// 로봇공학 학제전공 Robotics Program
+% STE 	// 반도체 학제전공 Semiconductor Technology Educational Program
+% SEP 	// 소프트웨어공학프로그램 Software Engineering Program
+% TE 	// 정보통신공학 학제전공 Telecommunication Engineering Program
+% EML 	// e-매뉴팩쳐링리더십 학제전공 e-Manufacturing Leadership Program
+% MT 	// 경영공학과 Department of Management Engineering
+% TM 	// 테크노경영전공 Techno-MBA Program
+% FIN 	// 금융전문대학원 Graduate School of Finance and Accounting
+%
+% science: 이학 | engineering: 공학 | business : 경영학
+% 박사논문의 경우는 학위종류를 입력하지 않아도 됩니다.
+% If you write Ph.D. dissertation, you cannot input degree field.
+
+\department{CSE}{engineering}
+
+% @command studentid 학번(ID)
+\studentid{20130732}
+
+% @command referee 심사위원 (석사과정 3인, 박사과정 5인)
+\referee[1]{Joon Hee Han}
+\referee[2]{Daijin Kim}
+\referee[3]{Ki-Sang Hong}
+% \referee[5] {Barack Obama}
+% Of course english name is available
+
+% @command approvaldate 지도교수논문승인일
+% @param   year,month,day 연,월,일 순으로 입력
+\approvaldate{2015}{12}{24}
+
+% @command refereedate 심사위원논문심사일
+% @param   year,month,day 연,월,일 순으로 입력
+\refereedate{2015}{12}{24}
+
+% @command gradyear 졸업년도
+\gradyear{2016}
+
+% 본문 시작
+\begin{document}
+
+    % 앞표지, 속표지, 학위논문 제출승인서, 학위논문 심사완료 검인서는
+    % 클래스 옵션을 final로 지정해주면 자동으로 생성되며,
+    % 반대로 옵션을 draft로 지정해주면 생성되지 않습니다.
+
+    % 영문초록 (abstract)
+    \begin{abstract}
+        In this thesis, a part-based region matching algorithm is proposed for human pose estimation in 2D images. A new notion of part, named a semantic part is introduced. A semantic part is represented as a combination of classic rigid parts and contains partial semantic information of body pose. Region proposals are used to form a set of candidate bounding boxes for semantic parts. These regions are matched between target and source images and their confidences are evaluated by computing the matching score. The regions with high confidence is the final semantic parts which form a body pose. Based on a data-driven approach, the final pose is estimated by getting information of joint positions from the source correspondences of the final semantic parts. Using semantic information catches more meaningful pose information and the part-based region matching has simple algorithm and performs effectively for a large number of data.
+    \end{abstract}
+
+    % 목차 (Table of Contents) 생성
+    \tableofcontents
+
+    % 표목차 (List of Tables) 생성
+%    \listoftables
+
+    % 그림목차 (List of Figures) 생성
+%    \listoffigures
+
+    % 위의 세 종류의 목차는 한꺼번에 다음 명령으로 생성할 수도 있습니다.
+    %\makecontents
+
+%% 이하의 본문은 LaTeX 표준 클래스 report 양식에 준하여 작성하시면 됩니다.
+%% 하지만 part는 사용하지 못하도록 제거하였으므로, chapter가 문서 내의
+%% 최상위 분류 단위가 됩니다.
+%% You cannot use 'part'
+
+\chapter{Introduction}
+
+% Definition of Human pose estimation (or not..)
+
+% [Nature]
+% 1. Human pose estimation is still challenging problem in computer vision area.
+% 2. It is applied to ~~ image understanding , ...
+% 3. It is difficult problem....because human body is highly articulated.
+% [Overview]
+% 1. Human pose is represented as configuration of multiple body parts.
+% 2. But, because human body is 1) highly articulated and because of 2) degree of freedom
+% more difficult than other general object detection.
+% [Related work]
+% 1. General : Human pose is represented as hierarchical graph model(pictorial structure)
+% appearance model / geometrical model (dependency)
+% 2. FMP
+% 3. ??
+% [Transition]
+% 1. But they fail to find highly complex pose or in case of some of parts are occluded by other part.
+% 2. need to consider semantic information
+% [Our work]
+% 1. We proposed ~ 1) semantic part 2) patch based region matching
+% 2. Idea : 1) (show example) To find crossed-arm is easier than to detect each part which consist of crossed-arm...
+% 3. It is strong to self occlusion, do not need to train part detectors. avoid double-counting
+
+
+Human pose estimation from a single static image is a challenging problem in computer vision. Various models for pose estimation have been proposed over the last decade and estimated human pose is applied to diverse high level vision tasks such as image understanding~\cite{imageUnderstanding:2013} and action recognition~\cite{actionRecognition:2013}.
+
+Human pose is represented as configuration of multiple body parts, which generally are parameterized by pixel location and orientation. The estimation of human pose can be considered as a part-based object detection problem, specifically for the case of articulated objects. This means an object is modeled by a~collection of parts arranged in a deformable configuration. In terms of a problem of localization of body parts, pose estimation is more difficult problem than other general object detection because human body is highly articulated and has a large number of degrees of freedom to be estimated. The large pose variations, cluttered background, self-occlusions are challenging aspects of human pose estimation.
+
+% Generality of Human pose estimation
+In most work on pose estimation, articulated human pose is usually modeled as a graphical model. The graph nodes represent the body parts and the edges model the pairwise dependencies between the parts. Most approaches has been based on hierarchical graph structure such as the pictorial structure model~\cite{PS_original:2005}. Simple hierarchical structures like tree models allow for efficient inference, but are not sufficient to capture large variations in human poses.
+
+% Weakness of using rigid part
+One important issue considered in this thesis is the basic representation of ``part''. Much of recent research on human pose estimation is based on the general flexible mixtures-of-parts~(FMP) model~\cite{FMP:2011}, which is also based on the pictorial structure with capturing contextual co-occurrence relations between parts. The FMP model is extended to many ways~\cite{pose_IDPR:2014, pose_orientedContour:2012}. Despite of the success, an assumption made by most of the previous approaches is that a ``part'' corresponds to a rigid piece of the human body that is meaningful in an anatomical sense, e.g.~torso, head, half limbs. This representation of parts does not have sufficient information for human parsing. For this problem, \cite{APM:2011, poselet_pose:2013}~proposed to use larger-scale parts that span multiple limbs, together with small parts. But such approaches require part detectors as many as the number of body parts defined. Increasing the number of detectors could improve the estimation accuracy, but requires much computation time. In this work, the problem of human pose estimation is considered in a similar way of using larger parts, but a \emph{semantic part}~---~a new representation of large-scale parts~---~is introduced. Further more, the part-based region matching approach that does not require detectors for each body parts is proposed to estimate human pose.
+
+% Semantic part
+A semantic part is a new notion of body part which contains sufficient semantic information. A~semantic part is a larger part with more context, in comparison with a general rigid part. It spans multiple rigid parts on the body and is expected to contain more semantic features. The underlying intuition of a~semantic part is similar to a poselet~\cite{poselet_original:2009}. The idea is that a rigid part which only represents a single limb is hard to detect and we need a larger part which involves semantics of body pose. For example, `bent-a-leg and stretched-other-leg', `left-looking head' and `crossed arms' represent the semantic state of a partial human pose. Such parts are easier to be detected rather than detecting rigid parts which is represented by parallel lines and not discriminative in appearance.
+
+% region matching
+By using semantic parts, this thesis propose part-based region matching algorithm for the human pose estimation. This work is motivated by~\cite{unsupLocalization_INRIA:2015} which proposed part-based matching approach to unsupervised object discovery. The matching algorithm  is extended to human pose estimation. Our goal is to estimate highly articulated human poses which are in cluttered appearance and suffered from self-occlusion. A set of candidate bounding boxes for body parts are formed by extracting region proposals~\cite{proposal_edgeBoxes:2014} from an image, to restrict the search space. The matching algorithm evaluates matches between the two sets of regions (target region proposals and source semantic patches) by considering both appearance and spatial consistency. The matching algorithm leads to find maximum score for final pose. The total score for pose is computed by region confidences on each joint point. Finally, the pairs of regions with the best match score are selected as semantic parts to form human pose. The pose information are inferred from the source regions of the best matches to the target image as a data-driven approach.
+
+The main contributions of this paper can be summarized as follows: (1)~A~semantic part, a new representation of part for human pose model is introduced. (2)~A~part-based region matching approach to human pose estimation is proposed. Experiments are performed on two standard pose estimation benchmarks: LSP dataset~\cite{dataset_LSP:2010} and Parse dataset~\cite{dataset_Parse:2007}.
+
+
+\chapter{Related Work}
+
+\section{Human Pose Estimation}
+
+\textbf{Pictorial structure }
+% Genaral pose estimation (FMP,..and others)
+Part-based representation is a classic framework for human pose estimation. A part-based model represents the human body as a~constellation of a set of rigid parts constrained in some fashion. Most work~\cite{pose_multiTree:2008, PS_revisited:2009, pose_latentTree:2013} on human pose estimation are graphical model-based for these body parts. In terms of part-based object detection, pose estimation is mainly represented by the pictorial structure models which is related to mixtures of parts~\cite{PS_original:2005, detection_DPM:2010}. The pictorial structure model~\cite{PS_original:2005} is efficient to solve object recognition and model learning problems. The pictorial structure decomposes the appearance of objects into local part templates, together with geometric constraints between pairs of parts. This models the spatial relations of rigid parts using usually a tree model which allows for efficient inference.
+
+The pictorial structures have been improved for pose estimation in many ways, by learning better appearance or shape models of the body parts. \cite{PS_revisited:2009}~proposes a generic model for articulated pose estimation. They use strong part detectors and combine a discriminative appearance model with a generative pictorial structures approach.
+% ps 확장 판을 하나 정도 더 추가
+
+% graphical model
+\textbf{Graphical model }
+One of the research in this area is the encoding of graphical model. The basic probabilistic model is a tree-structured conditional random field~(CRF). The human pose estimation with the image parses~\cite{dataset_Parse:2007} used the CRF notion of deformable matching from~\cite{deformableModel:2006}. Tree-structured model is efficient to inference~\cite{PS_original:2005, pose_multiTree:2008, pose_latentTree:2013}, but stronger definition for the part dependency mostly requires more complex structured graphical model. Loopy graph model requires approximate inference such as loopy belief propagation~\cite{pose_loopy_occlusion:2006}, or iterative approximations~\cite{pose_multiTree:2008}. In terms of a tree model, bottom-up approaches first detect body parts and then consider their geometric relationship. Top-down approaches match an image to a set of body parts spanning body poses. But this method to search body part locations is algorithmically complex. The simple region matching algorithm is used in this thesis rather than graphical model-based.
+
+% --------- larger parts, poselet
+\textbf{Part represenation }
+% FMP
+One of the state-of-the-art based on the pictorial structure is a flexible mixtures-of-parts model~(FMP) proposed in~\cite{FMP:2011}. As most pictorial structure-based approaches, their model is composed of unary terms modeling body part appearance and pairwise terms between adjacent body parts. And joints capture their preferred spatial arrangement. FMP showed the mixtures of part templates can be efficiently used in a tree model. In particular, they introduce the `type' of part which encodes the transformation of the limbs by different deformable templates per body part, instead of modeling the transformations of the single body part template as in the classical pictorial structure model.
+
+Some of research used combined parts to handle large variance in appearance. In~\cite{poselet_original:2009}, a poselet, a novel definition of a part, is proposed. Poselets are parts which is clustered in 3D configuration space and the parts are trained for the poselet detectors in appearance space. Poselet was originally developed for human detection and various applications were introduced in~\cite{poselet_humanDetection:2010, poselet_action:2010, poselet_attribute:2011}. By extension, \cite{poselet_actionWithLatentPose:2010, poselet_humanParsing:2011, poselet_pose:2013}~used poselet to estimate human body poses.
+
+Large-scale parts can be integrated into a hierarchical or coarse-to-fine representation. \cite{poselet_humanParsing:2011, APM:2011, poselet_humanParsing:2011}~proposed an approach that based on hierarchical model that requires approximate inference with loopy belief propagation. The concept that they try to find the similar patch both in appearance and geometry by using the part-based model with large-scale parts is similar to the concept of this thesis, however, their approach relies on a complex hierarchical model based on poselet. In~\cite{APM:2011}, they proposed an articulated part-based model~(APM) which represents an object as a collection of parts at multiple levels from coarse-to-fine. They use a large number of detectors for multiple parts, which are not required for the approach in this thesis.
+
+\textbf{Joint localization }
+Most of the foregoing deal with the human pose estimation as a part-based detection problem. On the other hand, the pose estimation can be considered as the task of joint localization~\cite{pose_jointRegressor:2013, pose_objectLocalization:2015}. \cite{pose_jointRegressor:2013}~proposed discriminative part template predictors by using non-linear joint regressors independent to each body part. In this thesis, proposed approach is more related to the joint localization than to object detection, however, image regions are matched for localizing the joints in a part-based concept.
+% We also show the accuracy of the joint localization in our experimental results.
+
+% \textbf{Contextual information}
+
+\section{Part Localization}
+
+\textbf{Region proposal }
+In this thesis, as a body part is considered as an object, object proposals are used as region proposals for part localization. These proposals are usually introduced as object proposals, which have been used in many of the methods~\cite{proposal_iterativeLink:2009, proposal_localizingObj:2010, proposal_colocalization:2014} for object localization. The goal of object proposal generation is to generate a relatively small set of candidate bounding boxes that cover the objects in the image. Candidate bounding boxes representing object proposals is found by measuring the `objectness' introduced in~\cite{proposal_objectness:2010}. The objectness measure samples image windows with the probabilities that they contain an object of any class. There are various methods for object proposal generation. Prime Object Proposals \cite{proposal_prime:2013}, based on a randomized version of Prim's algorithm, generates proposals by merging superpixels. The Edge Boxes~\cite{proposal_edgeBoxes:2014} provides proposals based on edges that is simpler and more efficient. Since edges can provide an informative representation of the appearance of a human body, the Edge Boxes are used for our experiment. The extracted proposals form a~set of candidate bounding boxes for body parts. Most of the approaches use a~small number of the best proposals (typically, less than 100 for each image). In contrast, this thesis use relatively a large number of the best proposals (typically, between 200 to 700) as primitive elements for matching without any pose priors.
+
+\textbf{Object localization }
+Recent work on object localization~\cite{proposal_iterativeLink:2009, proposal_colocalization:2014, unsupLocalization_INRIA:2015} focused on weakly-supervised or unsupervised approaches. \cite{proposal_colocalization:2014}~performs co-localization in real-world setting, which are characterized by large amounts of intra-class variation and inter-class diversity. For unsupervised object discovery, \cite{unsupLocalization_INRIA:2015}~proposes a part-based matching between object regions. They use region proposals for objects parts and match these regions across images using a probabilistic Hough transform. In a similar manner, the part-based region matching in this thesis is extended to pose estimation by considering body part localization as object localization.
+
+\chapter{Proposed Method}
+
+
+% [Overview] My Approach
+%
+% 1. Semantic Part(or Patch)
+% => Definition
+% => Attribute
+% => How to define it (Experimentally)
+% (need our own algorithm and theory)
+% => Why use semantic part? (Why better than common single part?)
+%
+
+\section{Overview}
+
+% Introduction
+The task of human pose estimation is examined in static images. Human pose estimation from a single static image is a challenging problem in computer vision. Various models for pose estimation have been proposed and a working technology is applied to diverse high level vision tasks such as image understanding~\cite{imageUnderstanding:2013} and action recognition~\cite{actionRecognition:2013}.
+
+% Overview of general pose estimation
+In general, human body pose is represented by configuration of multiple rigid parts located at joints. Body parts usually are parameterized by pixel location and orientation. The appearance of a body is decomposed into local parts, and the deformable configuration is defined with geometric constraints between a pair of parts. The goal of human pose estimation is to find every pixel location of body joints. That means to find the best configuration of multiple body parts.
+
+The rigid parts are based on human anatomy. A human pose is labeled joint positions and they provide part positions as limbs. A body limb is represented by the joint points as endpoints of its region. In this sense, the word ``rigid parts'' appears to be used interchangeably with the expression ``joints'' and ``limbs'' here. Figure~\ref{fig:graphStructure} shows the human body model based on rigid parts.
+
+Let $p_i \in \{p_1, \dots, p_K\}$ denote the $i$-th joint point, where $K$ is the total number of joint points. Note that we are using the expression ``rigid parts'' distinctively from the notion ``semantic part'', introduced next.
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/graphStructure.jpg}
+\end{center}
+   \caption{The graph model of the articulated human body. \textbf{left}~:~Generally, human body is modeled with joint points based on human anatomy. It is parameterized by $K$~body points located at joints ($K = 14$). \textbf{right}~:~Rigid parts are represented as limbs by using the joints as endpoints of the limbs. Most previous approaches build detectors for these rigid parts. In this thesis, the final estimation is based on this human body model as the configuration of joint points, but a new approach is proposed using mid-level representation named a `semantic part', which is different from a rigid part.}
+\label{fig:graphStructure}
+\end{figure}
+
+\clearpage
+
+
+% Algorithm overview
+For human pose estimation, a part-based region matching algorithm is constructed with a new representation of part for body model, named semantic part. Articulated limb parts are not used, but rather semantic parts are introduced as mid-level part representation. A general rigid part has less contextual information and hard to build accurate detectors for. In contrast to a rigid part, a~semantic part is a larger part and more discriminative in appearance. By using this concept of semantic part, unlike most pose estimation technique, a region matching approach is used and no part detector is required.
+
+% Algorithm details
+For region matching among semantic parts, firstly, candidate patches of semantic parts are extracted from a target image. Region proposals are used to form part candidates. These regions are matched with the semantic parts from source images. Matching score is computed for each part correspondences considering both appearance and spatial consistency. Part candidates with high matching scores are decided to be the final parts that form the final human pose.
+
+% Figure
+Figure~\ref{fig:overview} illustrates an overview of proposed approach. By part-based region matching, the final semantic parts matched with patches from source images are selected among candidates. Semantic part correspondences are marked with boxes with the same color.
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/overview.jpg}
+\end{center}
+   \caption{The overview of our approach. Proposed pose estimation algorithm using part-based region matching.}
+\label{fig:overview}
+\end{figure}
+
+\clearpage
+
+
+
+\section{Semantic Part}
+\label{sec:semanticPart}
+
+In most previous part-based models~\cite{FMP:2011}, rigid body parts such as head, torso, half limbs are guided by human anatomy. This representation of parts are difficult to detect accurately because single rigid part which is represented by parallel lines is not discriminative in appearance and does not contain any contextual information. This may commonly occur in clutter and induce self-occlusion. To handle large variance in appearance of human pose, the use of larger parts with more context needs to be considered. Some researches~\cite{poselet_humanParsing:2011, APM:2011, poselet_pose:2013} used larger or combined parts such as poselet~\cite{poselet_original:2009}.
+
+% --------- Intuition ---------
+Our intuition, similar to that of~\cite{poselet_humanParsing:2011}, is that it is hard to build accurate detectors for a rigid part which only represents a single limb. This motivates parts which involves semantics of body pose are needed. To qualify the semantic information of partial human pose, it is needed to define an area that is bigger than a single rigid parts. For example, as visualized in Figure~\ref{fig:overview}, `bent-a-leg and stretched-other', `left-looking head' and `crossed arms' represent the semantic state of a partial human pose. Our concept is similar to poselet that were originally developed for human detection. In contrast to other approaches using large scale parts, detectors for the parts are not required but region matching algorithm, which will be introduced in Section~\ref{sec:partBasedRegionMatching}, is used. A new method is proposed to define our notion of large-scale parts.
+
+% ---------- Concept ----------
+The principal contribution of this section is a new notion of part, a \emph{semantic part}, and selection algorithm for semantic parts. In Section~\ref{sec:semanticPart_definition}, the definition of a semantic part is introduced. The term semantic part is used to suggest that it describes a part of one's pose and it's concept is more simple in comparison to prior works. A semantic part is a larger-scale part which is expected to contain more semantic features, separately from a general rigid part. Proposed selection algorithm for reliable semantic parts is described in Section~\ref{sec:semanticPart_algorithm}.
+
+\clearpage
+
+\subsection{Definition}
+\label{sec:semanticPart_definition}
+% ---------- Definition ----------
+Our notion of ``parts'' can range from basic rigid parts (e.g. torso, head, half-limb), to large pieces of bodies covering more than one rigid part. In the extreme case, the ``parts'' corresponding to the whole body. This ``part'' is named as a \emph{semantic part}. In other words, a semantic part spans multiple rigid parts (or joint points) on the body. For example, a semantic part is `head + torso', `torso + left arm' and `left leg + right leg'.
+
+A semantic part is described as a set of one or more body limbs, in other words, subset of whole body parts. Let $S_i$ be the $i$-th semantic part, where $i$ is written as ${i \in \{1, ..., N\}}$ and $N$ is the number of semantic parts which form a~human body. We define a semantic part as:
+
+\textbf{Definition}
+\begin{eqnarray}\label{eq:semanticPart_definition_1}
+S_i \in \mathcal{P} ( {p_1, \dots, p_K} ) \backslash \{\emptyset\} , && \text{for } i = 1, \dots, N
+\end{eqnarray}
+where $\mathcal{P} \left( \cdot \right)$ denotes the power set, the set of all subsets of a set. A semantic part is one of elements of the power set of all joint points $\{p_1, \dots, p_K\}$, excluding the empty set. This involves that in the extreme case, a semantic part can even be a~rigid part or the whole body.
+
+However, Definition~\ref{eq:semanticPart_definition_1} occurs disconnected composition of joints. The disconnected composition cannot be considered semantically meaningful and this cannot even be represented within a image patch. Accordingly, more strict definition for a semantic part is necessary. The new definition of a semantic part is written as follows.
+
+\textbf{Definition}
+\begin{eqnarray}\label{eq:semanticPart_definition_2}
+S_i \in \{G' | G' \text{ is a connected component of graph } G\} , & \text{for } i = 1, \dots, N
+\end{eqnarray}
+
+Graph~$G$ is proposed human body model, where the graph nodes represent joint points and the edges model the connectivity between joints. The final definition~\ref{eq:semanticPart_definition_1}, which is more strict than previous on, defines a semantic part as a~connected component of graph~$G$. The combination must contain rigid parts which is adjacent to at least one of the others anatomically, because this leads a semantic part to be semantical and unconnected rigid parts cannot be considers as a new part. For example, `left upper arm + `left upper leg' in which two members are not connected to each others is not thought to contain sufficient semantic information, but rather `left arms + left legs'. A semantic part connects all the member rigid parts so that any two member parts are connected to each other by paths. In other words, as the rigid body model is considered as a graph structure, a semantic part is a connected component, consisting of the whole graph. By this definition, disconnected composition does not happen. Figure~\ref{fig:semnPrt_definition} shows the definition of the graph~$G$, examples of the disconnected compositions and examples of semantic parts with the final definition.
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/semanticPart_definition.jpg}
+\end{center}
+   \caption{(a) The definition of graph~$G$ of the human body model. The nodes represent joint points and the edges model the connectivity between joints. (b)~Examples of disconnected compositions of joints occurred by Definition~\ref{eq:semanticPart_definition_1}. (c)~Examples of semantic parts with the final definition~\ref{eq:semanticPart_definition_2}. The strict definition does not occur disconnected composition of joints.}
+\label{fig:semnPrt_definition}
+\end{figure}
+
+\clearpage
+
+
+% ---------- Attribute ----------
+There are several attributes for a semantic part; 1)~Areas of two different semantic parts can overlap each other. This means a rigid part can be spanned by more than one semantic part. 2)~The union of all semantic parts must cover the full body model. It denotes that a rigid part must be included in at least one semantic part.
+
+\textbf{Attribute 1}
+\begin{eqnarray} \label{eq:semanticPart_attr1}
+%\begin{equation}
+0 \leq |S_i \cap S_j| \leq \min{(|S_i|, |S_j|)} , && \text{for } i,j = 1, \dots, N
+%\end{equation}
+\end{eqnarray}
+
+The cardinality $|S|$ is the number of rigid parts in the set~$S$. This attribute shows that the intersection of two different semantic parts does not have to be the empty set. So that different semantic parts can share identical rigid parts as elements.
+
+\textbf{Attribute 2}
+\begin{eqnarray} \label{eq:semanticPart_attr2}
+%\begin{equation}
+p_i \in \bigcup_{i=1}^N S_i , && \text{for } i = 1, \dots, K
+%\end{equation}
+\end{eqnarray}
+
+A rigid part is a element of at least one of semantic parts. If not, all semantic parts finally decided in the end of stage do not sufficiently contain information of every location of joints to infer whole body pose. The phrase `at least one part' involves that the number of parts can be `more than one'. This has something in common with Attribute 1. Several examples of semantic parts are shown in Figure~\ref{fig:semnPrt_example}.
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/semanticPart_example.jpg}
+\end{center}
+   \caption{Examples of semantic parts with part deformation and large appearance variation. A semantic part are a composition of rigid parts. A semantic part ranges from a single rigid part to whole body. Larger parts with more rigid parts contain more semantic information, however, too large regions cause cluttered appearance because of the large variations. }
+\label{fig:semnPrt_example}
+\end{figure}
+
+\clearpage
+
+
+\subsection{Criteria of Semantic Part}
+The term semantic part is used to describes a part of a human pose. According to our intention, we argue that a ``good'' semantic part must satisfy the criteria as in the following.
+
+\begin{enumerate}[noitemsep]
+    \item It should be easy to find semantic part given the input image. This suggests that the semantic part must be discriminative in appearance.
+    \item A semantic part should be contain sufficiently semantic information. This means that the semantic part muse be semantically discriminative with the appearance.
+\end{enumerate}
+
+The criteria above involves the relation between semantics and appearance of the semantic part. In brief, the semantic part must be discriminative in both semantics and appearance. Semantic information of human pose in an image is interpreted as the geometry relation of joint positions. In next section, how the semantic parts are selected with consideration of the relation between appearance and geometry information in human poses is described.
+
+
+\subsection{Semantic Part Selection Algorithm }
+\label{sec:semanticPart_algorithm}
+% Introduction
+In poselet~\cite{poselet_original:2009} which is made under similar concept with ours, they clustered parts in 3D configuration space and trained the poselet detectors in appearance space. It is time consuming and hard to train accurate detectors for each poselet. In this thesis, semantic parts are defined in a more simple way and selected parts are used in the region matching step introduced in Section~\ref{sec:partBasedRegionMatching}.
+
+Before part-based region matching is performed, it has to be defined that which semantic parts will be used for human pose estimation. A semantic part is composed of several rigid parts. As a combination of rigid parts, it can be `head + torso', `torso + left arm', `left leg + right leg',~etc. Among them, we have to find which combination is semantically meaningful.
+
+% Algorithm
+Simply put, semantic parts with high correlation between appearance similarity and geometry similarity are selected among manually composed semantic parts. The followings are our procedure of semantic part selection.
+
+\begin{algorithm}
+\caption{Semantic part selection}
+\label{algo:semanticPart}
+\begin{algorithmic}[1]
+\State Set candidates of semantic parts as combinations of rigid parts.
+\State Sample patches of semantic parts, from each image of dataset.
+\State Extract appearance/geometry features from the patches.
+\State Compute similarities between every pair of the patches, for each appearance/geometry feature.
+\State Compute correlation between appearance and geometry features, for each semantic part.
+\State Select semantic parts which have high correlation.
+\end{algorithmic}
+\end{algorithm}
+% 기호를 사용해서 수정해야하나?
+
+Firstly, candidates of semantic parts are sampled. A candidate semantic part is composed of a combination of rigid parts. Rigid parts which composed together are adjacent to each other anatomically, e.g. upper left arm and lower left arm. Patches are sampled from image dataset corresponding to every semantic parts. (Note that the term `semantic part' here is the conceptual representation as a~combination of rigid parts. An exact image patch corresponding to a semantic part can be extracted from a image, because the image may contain information of all rigid parts. This patch can be called as a `semantic patch', for the convenience.) Appearance and geometry features are extracted from the semantic patches. Then similarities between every pair of the patches are computed for each semantic part and for each appearance/geometry feature. Now, every semantic part has $(\#\text{pair} \times \#\text{pair})$ similarity matrices of both appearance and geometry feature. A correlation between an appearance similarity matrix and a~geometry similarity matrix are computed for each semantic part. Top-k semantic parts with high correlation is finally selected for the following experiment. In the experiment, the appearance feature is used HOG descriptor~\cite{HOG} and the geometry feature is used joint locations relative to center position.
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=1\linewidth]{./fig/semanticPart_meaning.jpg}
+\end{center}
+   \caption{The meaning of the semantic part selection with two examples of semantic parts~(`head+arms' and `whole body'). Dotted-box denotes the nearest neighbor of the target region~(marked with the same-colored box) in appearance space. In this case, semantic part~`head+arms' can be considered as having high correlation between appearance similarity and geometry similarity, in comparison to semantic part~`whole body'. }
+\label{fig:semnPrt_meaning}
+\end{figure}
+
+\clearpage
+
+% Meaning of correlation
+Figure~\ref{fig:semnPrt_meaning} shows the meaning of the semantic part selection with some examples of semantic parts. If, as appearance similarity increases, geometry similarity tend to increase, the correlation will be high. If, as appearance similarity increases, geometry similarity decrease, the correlation will be low. The correlation indicates the relationship between appearance similarity and geometry similarity. If appearance similarity and geometry similarity of a semantic part tend to increase together, this can be interpreted that the appearance feature extracted from the semantic part sufficiently represents the geometry information of the part. By the proposed algorithm, a semantic part with high correlation between appearance and geometry similarities is the better semantic part than other with low correlation. In other word, the semantic part with the high correlation can be considered to be semantical. That is, the correlation involves how a semantic part is semantically discriminative in appearance.
+
+Several semantic parts are determined by selecting reliable semantic parts among candidates. Table~\ref{tab:result_semPrt_correlation_1}~and~\ref{tab:result_semPrt_correlation_2} show semantic parts considered in the semantic part selection process and their correlations. According to our expectation, among semantic part candidates, the correlation of semantic parts consisting of a single rigid part are tend to low, while the correlation of semantic parts of combined rigid parts are relatively high. This may be caused by that a rigid part is in clutter and suffered from self-occlusion, much more easily than a larger part. Figure~\ref{fig:semnPrt_similarity} shows that the semantic parts selected by the proposed algorithm are reliable.
+
+
+\newpage
+
+\begin{table}
+\begin{center}
+\begin{tabular} {lcccc}
+\hline
+Semantic part & left legs/arms & right legs/arms & \textbf{head+torso+arms} & \textbf{legs} \\
+\hline
+Correlation  &  0.408 &  0.399 & 0.391 & 0.383 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Semantic parts with high correlation. Bold~:~the semantic parts used in our experiments. \newline}
+\label{tab:result_semPrt_correlation_1}
+
+\begin{center}
+\begin{tabular} {lcccc}
+\hline
+Semantic part & right arms & arms & left lower arm & right lower arm \\
+\hline
+Correlation  &  0.163 &  0.119 & 0.071 & 0.067 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Semantic parts with low correlation}
+\label{tab:result_semPrt_correlation_2}
+
+\end{table}
+
+
+
+\clearpage
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.9\linewidth]{./fig/semanticPart_similarity.jpg}
+\end{center}
+   \caption{The target semantic patches~(left) and the nearest neighbors in appearance feature space among source semantic patches~(right) in each row. The Euclidean distances in appearance space are above each patches. We can see that the nearest neighbors with low distance in appearance are also semantically similar.}
+\label{fig:semnPrt_similarity}
+\end{figure}
+
+\clearpage
+
+
+% ------- Example image of semantic patches(with correlation) ----------
+\subsection{Discussion}
+
+% meaning of semantic part
+From now on, let us look at the meaning of our semantic patch. On the one hand, it can be though that semantic patch can be sampled in arbitrary location of human body, without using such semantic part selection process. However, as the intuition, appearance formed by combination of rigid parts can contain semantical information, such as `crossed arms' and `bent-a-leg and stretched-other-leg'. And the final goal for human pose estimation is to decide every joint position. So that it can be started with setting combinations of rigid parts as candidates for semantic parts.
+
+% The meaning of selection
+Let us think about why only several combinations of rigid parts have to be used, not all. It is not always better to use all combinations for semantic parts. If semantic parts with low correlation between appearance/geometry similarity are used, it can induce failure of pose estimation by inferring wrong part location. The low correlation means a part is not guaranteed that it is semantically meaningful.
+% This will be discussed later, in section
+
+% Weakness
+However, proposed definition of semantic part is data dependent. For the case of LSP dataset, some of images contain partially similar poses to each other and some of them has the specific pose of arms and legs (i.e.~`arms lifting baseball bat') in limited sports environment. Under the condition, it is predictable that a part which covers area of arms or legs is discriminative in appearance and in semantics. But it cannot guarantee that semantic parts selected from a dataset also work well for other dataset. However, by the definition, one joint point can be spanned by more than one semantic part and the part-based region matching algorithm is performed for the final pose estimation. So, the type of semantic parts to be selected is not that dominant factor in the pose estimation.
+
+\clearpage
+
+\section{Part-based Region Matching}
+\label{sec:partBasedRegionMatching}
+
+In this section, a part-based region matching algorithm is introduced for human pose estimation. Repeatedly, a human pose is defined by find every location of joint points in a image.
+
+The complete pose $L$ is represented by $L = \{p_1, \dots, p_K\}$, where $K$~is the total number of joint points (i.e.~$K = 14$ in our case). The goal is to estimate the best pose denoted by~$L^*$ and the objective function is shown in Equation~\ref{eq:objectiveFunc}.
+
+\begin{equation} \label{eq:objectiveFunc}
+L^* = \argmax score(L)
+\end{equation}
+
+According to the definition of a human pose as a configuration of joint positions, the total score of pose~$L$ can be defined by summation of all part scores as Equation~\ref{eq:totalScore_def}.
+
+\begin{equation} \label{eq:totalScore_def}
+score(L) = \sum_{p_i \in L} score(p_i)
+\end{equation}
+
+The definition of the score function is describe in Section~\ref{sec:matchingAlgorithm} and the section shows how the part-based region matching algorithm works for human pose estimation. Before that, in Section~\ref{sec:matchingScore} illustrates the matching score, which determines the joint score by the region matching algorithm.
+
+ In the experiment, an image used for test is called the `target' and comparable images for matching with the target image is `source' images. Data of target and source images are formed as we use test and training sets from a dataset in general.
+
+Candidate patches for semantic parts are produced by extracting region proposals~\cite{proposal_edgeBoxes:2014} from the target image. These multi-scale proposals are expected to include meaningful parts of body. By matching the candidate regions and source semantic patches, a couple of regions with high matching score are selected for human body. Final human body pose is estimated by bringing the pose information from the correspondences of the selected regions.
+
+\subsection{Matching Score}
+\label{sec:matchingScore}
+
+Region proposals are used as candidate regions for human body. Divers multi-scale proposals include meaningful parts of a human body. Let two sets of regions~$R$~and~$R'$ have been extracted from a target image and source images, respectively. Let $r = (f,l) \in R$ denote a region with feature~$f$ (e.g.~HOG descriptor~\cite{HOG}) observed at location~$l$.
+
+A matching score between $r$ and~$r'$, which is represented by $m(r,r')$, is computed as follows.
+
+\begin{equation} \label{eq:matchingScore}
+m(r,r') = \alpha \cdot m_\text{a}(r,r') + (1-\alpha) \cdot m_\text{s}(r,r')
+\end{equation}
+
+Appearance score~$m_\text{a}(\cdot)$ is computed as the similarity between $f$ and~$f'$. Spatial score~$m_\text{s}(\cdot)$ is estimated by comparing displacement between $l$ and~$l'$.
+A~weighting factor, $0 \leq \alpha \leq 1$, determines the level of contribution of appearance score and spatial score to the total match score.
+
+\begin{equation} \label{eq:appearanceScore}
+m_\text{a}(r,r') = - \exp{( \gamma \cdot \|f-f'\|_2)}
+\end{equation}
+
+For appearance score, the Euclidean distance (2-norm distance) between appearance feature vectors~$f$~and~$f'$ is computed and the distance is converted to negative after the exponentiation. In the same way, spatial similarity is calculated with the distance between pixel locations~$l$~and~$l'$ in the Euclidean space.
+
+\begin{equation} \label{eq:spatialScore}
+m_\text{s}(r,r') = - \exp{ (\lambda \cdot \|l-l'\|_2)}
+\end{equation}
+
+
+\subsection{Matching Algorithm}
+\label{sec:matchingAlgorithm}
+
+As Section~\ref{sec:semanticPart} described, semantic parts to be used are decided for region matching. Selected semantic parts have information of the compositions of rigid parts. Among these regions, some with high confidence are selected as the final regions for human body. Figure~\ref{fig:regionMatching_process} shows an overall process of the part-based region matching. The confidence of the region is evaluated by matching score which considers appearance and spatial consistency between target and source image regions. The human pose as configuration of joints is inferred from the final regions, which possess the best match with sources. Our part-based region matching algorithm in details is described as follows.
+
+\begin{algorithm}
+\caption{Part-based region matching}
+\label{algo:regionMatching}
+\begin{algorithmic}[1]
+\State Extract object proposals $R$ from the target image as candidates for semantic part.
+\State Sample patches~$R'$ from source images for each semantic part (predefined in Algorithm~\ref{algo:semanticPart}).
+\State Compute matching score (Equation~\ref{eq:matchingScore}) for every pair of regions~$(r,r')$ where~$r \in R$, $r' \in R'$.
+\State Find the best match~$(r,r')^*$ for each~$r$ by selecting a correspondence~$r'$ with the maximum matching score. This matching score becomes region confidence~$c(r)$ for region~$r$.
+\State For each rigid part~$p_i$, choose several regions which cover the part. Among the regions~$\{r|p_i \in r\}$, select a region~$r_i^*$ with the maximum region confidence.
+\State Determine every part position by inferring the annotated pose information from the correspondence pair~$(r_i^*, r'_i)^*$ for part~$p_i$.
+\end{algorithmic}
+\end{algorithm}
+
+% Algorithm description
+Let $r = (f,l,S)$ denote a region of image patch, where $f$ and $l$ are appearance and spatial feature extracted from the region. Here $S$ defines a corresponding semantic part which is a set of joint points denoted as $S = \{\dots, p_i, \dots, p_{|S|}\}$. A~rigid part $p$ is parameterized by $p = (t,x,y)$, where $t$ is the type of the part, $x$~and $y$ is the pixel location of the part. Refer to Section~\ref{sec:semanticPart} for the definition of a semantic part.
+
+Let us try to estimate human pose from a target image. From a target image, region proposals~\cite{proposal_edgeBoxes:2014} are extracted to form a set of candidate bounding boxes for semantic parts. Let $R$ be a set of the region proposals. The method of region proposal generates bounding box proposals at regions where an object probably exists. By using region proposals for part candidates, multi-scale regions, which is more probable to be parts of human and reduce the search space, can be obtained. Later in the region matching algorithm, a number of proposals are selected to be the final part elements of human pose.
+
+For every semantic parts, patches are sampled from every source images at the region corresponding to a semantic parts beforehand. Let $R'$ denote a set of semantic patches extracted from every sources. Since source images have annotated information of human pose that is locations of entire joint points, a region as a image patch can be produced from a source image by using composition information of joints in a semantic part. This means that the information of $S$ for a source region~$r' \in R'$ is known, whereas not for a target region~$r \in R$. Briefly, $R$~is a set of target region and $R'$~is a set of source regions. A element of both set is denoted by~$r = (f,l,S)$ while $S$ is the only unknown for~$r \in R$.
+
+Now regions are matched between a target image and source images. Matching scores for every pair of regions~$(r,r')$ are computed, where~$r \in R$, $r' \in R'$. As described in Section~\ref{sec:matchingScore}, a matching score~$m(r,r')$ is computed with appearance and spatial similarity between regions~$r$~and~$r'$. The matching score function is defined as Equation~\ref{eq:matchingScore}.
+
+
+The region confidence~$c(r)$ is a function of region~$r$ in target~$R$ with its best correspondence~$r'$ in source~$R'$. It is defined as a max-pooled matching score for~$r$ in~$R$ with respect to~$r' \in R'$.
+
+\begin{equation} \label{eq:regionConfidence}
+c(r) = \max_{r'}{ m(r,r') }
+\end{equation}
+
+Equation~\ref{eq:regionConfidence} derives from the best matches form $R'$ to~$R$ under one-to-many mapping constraints. The best match between $r$ and~$r'$ is denoted by~$(r,r')^*$. High region confidences guarantee that corresponding regions have at least single good matches in consideration of both appearance and spatial consistency. Now, the one-to-many mapping reduced to one-to-one matched pair.
+
+With the best match, the human pose~$L$ is estimated with the best final score. Since $L$ contains every type of joint, a variable~$t$ for the joint type is unnecessary. In this case, the notation for part~$p_i$ is parameterized by~$p_i = (x_i, y_i)$ without~$t_i$. Note that the total score for estimated pose in Equation~\ref{eq:totalScore_def} can be rewritten as follows through our part-based region matching algorithm. The final score for the pose is defined as:
+
+\begin{equation} \label{eq:totalScore}
+score(L) = \sum_{p_i \in L} \max_{r} {c(r | p_i \in r)}
+\end{equation}
+
+where $p_i \in r$ means that $i$-th rigid part is contained in region~$r$, in other words $p_i \in S$ where~$r=(f,l,S)$ exactly. The expression~$\max_{r} {c(r | p_i \in r)}$ is considered the confidence for part~$p_i$, which is the same meaning of the part score~$score(p_i)$ stated in Equation~\ref{eq:totalScore_def}, as a max-pooled region confidence with respect to region~$r$ which contains part~$p_i$.
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/regionMatching_process.jpg}
+\end{center}
+   \caption{ Part-based region matching using region proposals. (a-b) A given image and its $20$~best region proposals. The region proposals are matched to source regions as semantic patches and evaluated by the proposed matching algorithm. (c) Final pose is estimated from the source regions of the best matches. The best matches for $N$~semantic part are shown in a red box ($N=3$,~\{`head', `upper body', `legs'\}). The best matches for each semantic part are shown mapping with a one-to-one constraint in each row. More details are described in~Figure~\ref{fig:regionMatching_detail}.}
+\label{fig:regionMatching_process}
+\end{figure}
+
+\clearpage
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/regionMatching_detail.jpg}
+\end{center}
+   \caption{ Human pose estimation process of the region matching algorithm. The final pose is estimated by a max-pooled region confidence from the best matched source regions. These examples of matched regions are introduced in~Figure~\ref{fig:regionMatching_process}. }
+\label{fig:regionMatching_detail}
+\end{figure}
+
+\clearpage
+
+
+In the proposed model, maximizing the matching score over region~$R$~and~$R'$ leads to maximize the total pose score. The selection of the nearest neighbor, which has the smallest distance from the target, can be expected to bring maximal configuration.
+
+By the region matching algorithm, the best matches for each semantic part are determined from the given image. As source images have annotated joint positions, the joint positions can be inferred by source regions that the best matches contain. The information of joint points is simply brought from the sources of the best matches to the corresponding target locations. By the attribute of semantic parts that all semantic parts cover whole body parts (Equation~\ref{eq:semanticPart_attr2}), the every joint position can be finally estimated. The final step of pose estimation after the region matching is a simple data-driven process, as shown in Figure~\ref{fig:regionMatching_detail}. The examples of match result and final pose estimation is shown in Figure~\ref{fig:regionMatching_example}.
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/regionMatching_example.jpg}
+\end{center}
+   \caption{ Examples of the best-matched patch. For each image, the best matches for semantic parts (only `upper body' and `legs' are shown) are shown~(middle) and the pose estimated from these best matches are visualized in skeleton.}
+\label{fig:regionMatching_example}
+\end{figure}
+
+\clearpage
+
+
+
+\begin{comment}
+\subsection{Discussion}
+\label{sec:regionMatching_discussion}
+\end{comment}
+
+
+% 뭐가 문제냐
+% training data에 닯은애가 없다. 그럼 당연히 정확하게 pose를 못찾겠지
+% 그 다음, best patch만 사용한다. 아, 문제가 많음.
+% appearance similarity만 고려하는데 그게 best가 잘못나오면 그냥 망하는거
+% dataset dependent하다. (semantic part 에서도 얘기했다)
+
+
+% 의미
+% best patch 찾고 best region proposal을 찾는게
+% 전체 similarity matrix에서 보면,
+% 상위 몇개의 pair를 고르는거랑 같음.
+% 대신 각 semantic part에 해당하는 상위 pair를 고르는거지.
+% 사실 간단한 개념임.
+
+% data-driven 방식으로 볼수있다.
+% 그리고 최종적으로 joint point를 추정하니가
+% semantic part는 mid-level representation이다 (맞나?)
+
+
+
+
+% 하나의 point가 같은 source data의 다른  semantic part에 대해서 matching이 되었을때
+% 어차피 둘중에 max를 고르게 될텐데
+% 하나의 source data가 갖고있는 정보는 같음. 더 confidence가 높은 patch로 부터 inferring 하는게 맞음.
+
+
+
+\chapter{Experiment}
+% from IDPR
+% This section introduces the datasets, clarifies the evaluation metrics, describes our experimental setup, presents comparative evaluation results.
+
+\section{Datasets}
+
+Experiments are performed on two standard pose estimation benchmarks: the Leed Sports Pose (LSP) dataset~\cite{dataset_LSP:2010} and the Image Parse dataset~\cite{dataset_Parse:2007}.
+The LSP dataset contains 2000 pose annotated images, that contains 1000~training and 1000~test images from sport activities with annotated full-body human poses. The Parse dataset contains 305~pose-annotated images of highly articulated full body images of human poses. The Parse dataset is not a good dataset for the proposed data-driven approach, because the number of the images is too small. Experiments in this thesis are performed mostly on LSP dataset which contains relatively enough number of image data among human pose datasets. As the images have low resolution and contain partially occluded people with all kinds of poses and viewpoints, our test is challenging. Both datasets included a standard train/test split. For the proposed model, the training set are used for source images and the test set for target images.
+
+
+\section{Evaluation Metrics}
+
+% from IDPR
+The most popular evaluation metric is used to allow comparison with previous work. Percentage of Correct Parts~(PCP) is the standard evaluation metric on several benchmarks including the LSP dataset. However, as discussed in~\cite{FMP:2011}, there are several alternative interpretations of PCP that can lead to severely different results.
+
+\textbf{PCP }
+In~\cite{pose_searchSpaceReduction:2008}, they describe a broadly adopted evaluation protocol based on probability of a correct pose, which measures the percentage of correctly estimated body parts (PCP). PCP measures the percentage of correctly localized parts for the objects that have been correctly detected. There are several alternative interpretation of PCP that leads to severely different results. Strict version of PCP~\cite{pose_IDPR:2014} is used in experiments of this thesis. A body part is considered correctly localized if the endpoints of its segment lie within $50\%$ of the length of the ground-truth from annotated true positions. As pointed out in~\cite{FMP:2011}, it is not an ideal way to measure the pose estimation performance. PCP is sensitive to the amount of foreshortening of a limb, so that it can be too loose a measure in some cases and too strict a measure in in others. PCP measure are used for comparison with other reported results.
+
+\begin{comment}
+\textbf{PCK} We used two measures for pose estimation that
+\textbf{APK} In a real system, one will not have access to annotated bounding boxes at test time, and so must address the detection problem as well. On can cleanly combine the two problems by thinking of body parts (or rather joints) as objects to detected, and evaluate object detection accuracy with a precision-recall curve. We deem a candidate to be correct (true positive) if it lies within
+\end{comment}
+
+\begin{comment}
+\textbf{Joint localization error }
+We measure the joint localization error introduced in \cite{pose_jointRegressor:2013} as a fraction of the body size. The joint localization error is well used in other computer vision tasks such as fiducial point detection. It is independent of the actual size of the image and more precise than PCP measures which derived from bounding box-based object detection.
+\end{comment}
+
+
+\section{Implementation Detail}
+
+A full-body model is defined for the datasets. The datasets include images with labeled joint positions. Experiments are performed with a pose model defined at 14 joint positions (e.g. head, shoulder, elbow, hand) same as annotations of joint positions from the datasets. On both datasets, training and test set are used for source and target images, respectively.
+
+For candidate regions, region proposals are extracted using Edge Boxes~\cite{proposal_edgeBoxes:2014}. Contrary to Randomized Prim algorithm~\cite{proposal_prime:2013} used in~\cite{unsupLocalization_INRIA:2015} which mainly referred in this thesis, the Edge Boxes used edges to generate object bounding box proposals. The toolbox of this includes the fast edge detector~\cite{fastEdgeDetection:2013}. Edges provide an informative representation of an image and they are appropriate to reflect the appearance of a human body. This thesis skips the detail description of parameter settings for the Edge Boxes. The number of region proposals extracted from an image is around 200 to 700, averagely~420. By the post processing, too small or other meaningless proposals are pruned.
+
+% 시간 졀약을 위해 training data의 feature extraction은 미리 해둠. test image 여러개에 대해서 할려고.
+
+
+% FMP library를 기반으로 구현했고
+
+% Selected semantic parts
+By using semantic part selection algorithm on LSP dataset, two number of semantic types were determined;~upper body part (head + torso + upper/lower arms) and a lower body part (hip + upper/lower legs). A part of head was used additionally, by post-processing. According to Definition~\ref{eq:semanticPart_definition_2}, a semantic part can be fully covered by other semantic part in some cases. This situation is denoted by~$S_i \subseteq S_j$. This reflects that hierarchy can be exist for semantic parts, which is a similar notion from~\cite{poselet_humanParsing:2011}. In this experiment, to be simple, the case of hierarchy is excluded when semantic parts are selected.
+
+% 하나의 semantic part가 다른 semantic part에 포함되는 경우...?
+% (그럴수 있는데 이렇게 되지는 않도록 처리했음.)
+% (얘를 semantic part defintion에 추가할까?) S_i \nsubseteq S_j
+% 충분한 근거를 설명해야함.
+% feature가 중복되어 matching되는 것을 피하고, 둘중에 더 잘 표현할 수 있는 part를 사용하도록 했다?
+
+
+As feature representation, the Histogram of Oriented-Gradient~(HOG) feature implemented in~\cite{HOG} are used to describe part appearance. We used $4 \times 4$~HOG cells in size for the 4136-dimensional appearance feature. The pixel location of the patch relative to the image is simply used for spatial feature. Euclidean distance (2-norm distance) is used as a similarity measure to compute similarity.
+
+% Parameters for matching score
+As parameters for matching score described in Section~\ref{sec:matchingScore}, ${\alpha=0.5}$, ${\gamma=0.05}$ and ${\lambda=8}$ are used. By setting $\alpha$, the weighting factor for appearance score in the total match score, as $0.5$ in the matching score function, the appearance and the spatial elements equally contributed to the region matching.
+% The effect of $\alpha$ is discussed in Section \ref{sec:result}.
+% To sample the regions of rigid parts, we generate box areas based on annotated joint positions.
+
+\chapter{Result}
+\label{sec:result}
+
+\section{Quantitative Result}
+
+% ------------ Comparison with prior works
+Proposed method is compared to the state-of-the-art method~\cite{FMP:2011} that uses a flexible mixture of parts modeled by linear SVMs. The available source code published by~\cite{FMP:2011} are used. To compare with other previous work using part detectors, a joint representation is converted into a limb representation by using the joints as endpoints of the limbs. PCP measure is used for a fair comparison with other reported results. PCP evaluated results on each part as limb representation rather than on joints.
+Table~\ref{tab:result_comparison_LSP} gives the comparison of PCP results on LSP dataset. The proposed approach improves on the most parts by a slight margin. The total performance of~$57.6\%$ compares favorably to the the result by~\cite{FMP:2011} of~$54.1\%$. \cite{FMP:2011}~achieves a better performance only for the part of the head.
+Table~\ref{tab:result_comparison_PARSE} shows the comparison results on Parse dataset. As expected, this method does not give improvement performance on Parse dataset. Because the proposed pose estimation is based on a data-driven approach, which requires sufficient sources, the algorithm works well under the condition of a large number of data.
+
+% localization error 설명하면서.
+Localizing the wrist is more difficult than head, shoulders and hip joint, because of the larger degrees of freedom. In comparison with other method using graphical model based on human anatomy, the proposed approach is less affected by such phenomenon. This can be also discovered from Table~\ref{tab:result_comparison_LSP} that result of this approach shows stable performances through all parts, relatively to the other.
+
+
+\newpage
+
+\begin{table}[t]
+\begin{center}
+\begin{tabular} {lccccccc}
+\hline
+Method & Torso & Head & U.arms & L.arms & U.legs & L.legs & Total \\
+\hline\hline
+Ramanan \cite{FMP:2011}  &  74.6 &  \textbf{79.9} & 38.9 & 25.2 & 53.6 & 52.4 & \textbf{54.1} \\
+% Ours(upper body+legs) &  \textbf{82.4} &  47.8 & \textbf{40.0} & \textbf{29.7} & \textbf{58.1} & \textbf{57.0} & 52.5  \\
+Proposed approach &  \textbf{83.9} &  51.5 & \textbf{47.1} & \textbf{38.5} & \textbf{63.1} & \textbf{61.7} & \textbf{57.6} \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Comparison of strict PCP results on the LSP dataset. The proposed method outperforms the previously published result~\cite{FMP:2011} on the most parts, by~$3.5\%$ on average.}
+\label{tab:result_comparison_LSP}
+\end{table}
+
+
+\begin{table}[t]
+\begin{center}
+\begin{tabular} {lccccccc}
+\hline
+Method & Torso & Head & U.arms & L.arms & U.legs & L.legs & Total \\
+\hline\hline
+Ramanan \cite{FMP:2011}  &   \textbf{67.8} &  \textbf{69.8} & 45.6 & \textbf{59.8} & \textbf{57.3} & 52.4 & \textbf{54.6} \\
+Proposed approach &  62.0 &  50.2 & \textbf{50.7} & 47.3 & 55.6 & \textbf{56.3} & 53.7 \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Comparison of strict PCP results on the Parse dataset. Performance by the proposed approach is not significantly different from the result by~\cite{FMP:2011}. The proposed method does not work well with the small number of data.}
+\label{tab:result_comparison_PARSE}
+\end{table}
+
+\clearpage
+
+% ------------ Quantitative result
+
+\begin{comment}
+
+Figure [] plots the accuracy curves for in
+
+% Fig : Accuracy plots for individual joints on the LSP dataset (joint regressor_fashion 논문 참고)
+
+
+% caption : The accuracy plots for individual joints using our part-based region matching algorithm. As expected, localizing the wrist is most difficult, whereas head, shoulders and hip joints are reasonable well localized.
+
+
+Figure [] shows the effect of $\alpha$, the weighting factor for appearance score in the total match score, which ranges $0 \leq \alpha \leq 1$. As $\alpha$ increases, the contribution of appearance score to the match score increases and the contribution of geometry decreases.
+
+% Figure : alpha 값에 따른 그래프 변화
+
+
+We consider the effect of varying $N$ (the number of semantic parts) on the accuracy of pose estimation on the LSP dataset in Figure [].
+
+% Fig : semantic part 개수에 따른 PCP performance 그래프 (FMP 논문 참고)
+
+\end{comment}
+
+\section{Qualitative Result}
+
+
+The human pose estimation results is visualized with graph skeleton. Figure~\ref{fig:result_LSP_compare} compares the qualitative results on LSP dataset with the state-of-the-art FMP model~\cite{FMP:2011}. This gives the result from FMP model in case of failure and our comparative results. Though FMP model proposed strong part model for pose estimation, they often generate failures. The part which is far from the torso is hard to detect accurately. Since FMP model uses part detectors, the failures occur on terminal parts of body. However the proposed approach is impervious to such a pain. FMP model using part detectors cannot overcome self-occlusion and cluttered appearance, which the proposed method partly solves by using data-driven approach.
+
+The experiments also are performed on Parse dataset, as shown in Figure~\ref{fig:result_Parse}. As previously mentioned, for the dataset with small number of image such as Parse dataset, part detection may be more appropriate method to pose estimation in comparison to our approach. Figure~\ref{fig:result_failure} shows the failure cases on both datasets. Some of the failures are totally wrong and some are fail to estimate the location of terminal parts. The failure occurs when there is no partially similar pose in source data or when the proposed method fails to get the good match. For the successful estimation, the source regions must contains poses similar to the target regions. The performance of the proposed method can be improved with the larger number of pose data.
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=1\linewidth]{./fig/result_LSP_compare.jpg}
+\end{center}
+   \caption{Results on LSP dataset compared to FMP model~\cite{FMP:2011}. For each image, the failure result from FMP~(left) and our result~(right) by using the part-based region matching algorithm are shown. Some of the results are failure cases but often generate better estimation than~\cite{FMP:2011}.}
+\label{fig:result_LSP_compare}
+\end{figure}
+
+\clearpage
+
+
+\newpage
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.6\linewidth]{./fig/result_Parse.jpg}
+\end{center}
+   \caption{Results on Parse dataset.}
+\label{fig:result_Parse}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+   \includegraphics[width=0.8\linewidth]{./fig/result_failure.jpg}
+\end{center}
+   \caption{Failure cases on LSP dataset and Parse dataset.}
+\label{fig:result_failure}
+\end{figure}
+
+\clearpage
+
+
+% Fig : semantic part를 limb 단위로 14개 사용했을때 또는 전체 body part에 대해서 했을때 얼마나 구린지를 보여줌.
+
+
+\chapter{Conclusion}
+
+A part-based region matching method is proposed to estimate human poses in 2D images. As the elements of matching, a semantic part, a new part representation which is a combination of classic rigid parts is introduced. A semantic part is expected to contain sufficient semantic information of human pose. They are easier to be detected rather than detecting rigid parts which is represented by parallel lines and not discriminative in appearance.
+A part-based matching between source and target regions is performed for human pose estimation. A set of candidate bounding boxes are generated from the target image by extracting object proposals, which restrict the search space. The matching algorithm evaluates matches between two sets of regions by considering both appearance and spatial consistency. The matching algorithm leads to maximize the total score for the final pose. The total score is computed by region confidences on each joint point. Finally, several best matches of regions are selected as semantic parts to form final human pose. By inferring the pose information from the source regions of the best match, every joint positions for whole body pose can be estimated.
+
+Since this approach simply brings the pose data from source regions, it can be considered as data-driven approach. This method does not require any detector and the algorithm is more simple than prior works. Proposed method is more effective when the number of pose data is large and the human pose contains self-occlusion or confused part poses.
+
+
+%%
+%% 한글요약문 시작 (Korean summary)
+%%
+%% Note. 영문논문일 경우에만 필요하니 한글논문의 경우에는 작성하지 마십시오.
+%%
+\begin{summarykorean}
+본 논문은 2차원 영상에서 사람 자세 추정(human pose estimation)을 위해 1)~신체 파트를 관절 단위가 아닌 의미적 영역으로 구분하고, 2)~파트 검출기를 학습하는 대신 파트 기반의 영역 매칭 알고리즘(part-based region matching)을 제안한다.
+
+기존의 파트 기반 검출(part-based detection) 방법에서는 사람의 신체를 팔, 다리 등 관절 단위로 구분하고, 각 파트에 대해 학습된 검출기로 파트를 검출하여 최종적으로 신체 전체의 자세를 결정한다. 하지만 관절 단위의 파트는 실제 사람의 자세와 관련된 의미적인 정보를 포함하지 못한다. 또한 자세가 복잡 할수록 파트의 검출 정확도는 감소하게 된다.
+
+본 연구에서는 파트 기반 모델을 위해 `시맨틱 파트(semantic part)'라는 새로운 개념의 파트를 소개한다. 시맨틱 파트는 기존의 신체 파트 보다 넓은 영역으로서, 관절 포인트의 조합으로 정의한다. 시맨틱 파트는 사람 포즈에 대한 의미적 정보(semantic information)를 가질 것으로 기대된다. 예를 들어, `팔짱을 낀 팔' 영상 영역에서 파트 검출기가 오른팔, 왼팔을 검출 해내는 것은 어렵지만, `팔짱 낀 팔'의 영역을 찾는 것은 비교적 쉽다. 이와 같이 의미적 정보를 포함한 파트를 이용하여 관절의 위치를 추정하는 것이 더 정확할 것이라고 제안한다.
+
+다음으로는, 파트 기반의 영역 매칭 알고리즘을 제안한다. 제안 하는 매칭 알고리즘은 대상 영상의 일부 영역을 비교 영상에서 추출한 영역들과 매칭하고, 그 중에서 높은 점수의 매칭쌍이 갖고 있는 어노테이션(annotation) 정보를 이용하여 최종적으로 사람의 자세를 추정한다. 먼저, 대상 영상에서 후보 영역을 추출하고 이 영역들을 비교 영상에서 추출된 시맨틱 파트 영역들과 매칭을 수행한다. 두 영역의 유사도를 이용하여 매칭 점수(matching score)를 정의한다. 하나의 대상 영역에 대해 최고 매칭 점수를 만드는 하나의 비교 영역을 찾아, 최종 매치 쌍을 결정한다. 이 매치들 중에서 각 시맨틱 파트에 대해 최고 점수를 갖는 매치를 최고 매치(the best match)로 결정한다. 매칭 점수는 매칭에 포함된 후보 영역의 신뢰도(confidence)가 된다. 최고 매치에 포함된 후보 영역은 총 시맨틱 파트 개수 만큼이 되는데, 이 후보 영역은 최종적으로 사람 자세를 구성하는 파트 요소가 된다. 관절 포인트는 해당 관절이 포함된 시맨틱 파트 중, 가장 높은 영역 신뢰도를 갖는 영역의 매치 짝으로부터 그 위치가 결정된다. 모든 관절 포인트의 위치가 결정되면 신체 전체에 대한 자세 추정이 완료된다.
+
+제안한 방법은 기존의 방법과 비교하였을 때, 몸체에서 멀리 떨어진 관절들에 대해서는 비교적 높은 성능을 보였다. 이는 계층적인 그래프 모델을 사용하지 않고, 하나의 영상 영역에 대해 모든 신체 파트를 동일하게 다루기 때문이다. 하지만, 데이터의 개수가 적은 데이터셋의 경우, 비교 영상들이 대상 영상의 포즈와 부분적으로 닮은 영역을 충분히 가지고 있지 않아 정확한 자세 추정이 불가능하다. 제안한 자세 추정 알고리즘은 의미적 파트를 사용하여, 추정이 어려운 복잡한 자세와 자체 중첩(self-occlusion)에 강력하다. 영역 매칭 방법을 사용하므로 검출기(detector)를 위한 학습 시간이 소요되지 않고, 대용량 데이터일 때 보다 효율적이고 높은 성능으로 자세를 추정할 수 있다.
+	
+\end{summarykorean}
+
+%%
+%% 참고문헌 시작
+%% Refences
+%%
+
+\bibliographystyle{unsrt}
+\bibliography{mybib}
+
+%%
+%% 감사의 글 시작
+%% Acknowledgement
+%%
+% @command acknowledgement 감사의글
+% @options [default: 클래스 옵션 korean|english ]
+% - korean : 한글타이틀 | english : 영문타이틀
+
+\acknowledgement[korean]
+
+    때로는 엄하고 때로는 부드러운 모습으로 지도 해주신 한준희 교수님, 감사드립니다. 부족한 저를 격려해주시고 바르게 이끌어주셔서 석사 과정을 잘 마무리 할 수 있었습니다.
+    한결 같은 올곧음과 지혜로움으로 지켜봐주시는 모습은 큰 본보기가 되었습니다. 감사합니다, 그리고 건강하세요.
+
+    짧고도 긴 시간을 함께 보낸 연구실 분들 감사합니다. 포항 생활에 적응하는데 꽤 오랜 시간이 걸렸지만, 좋은 분들과 함께 할 수 있어서 큰 힘이 되었습니다.
+    홍락 군 정말 수고 많았고, 동훈 형님 감사했어요. 한 분 한 분 알게 되어서 소중한 시간이었습니다.
+
+    여기에 오기까지 많은 분들이 도움을 주셨습니다. 특히, 저의 정신적 지주이자 논문 자문위원이 되어주신 한종찬 씨 감사합니다. 바쁜 와중에도 시간을 내어 많은 도움을 줘서 고맙습니다.
+    일상의 소소함을 나눌 수 있었던 선영이, 소정이, 효정 언니, 혜진이 그리고 윤진성 씨 고마워요. 그 외에도 여러모로 도와 주신 많은 분들 감사합니다.
+
+    멀리 있지만 끊임없는 관심을 기울여주는 다희, 보람이, 그 외 친구들, 고맙습니다. 그리고 나의 지기지우 희수, 늘 응원해주셔서 진심으로 고맙습니다.
+    소중한 친구이자 애인인, 하나 밖에 없는 나의 어머니, 감사하고 사랑합니다. 모두들 덕분에 행복한 마음으로 석사 과정을 마무리 하였습니다.
+
+    마지막으로 이 결실을 만든 나 자신 오수영에게 격려의 박수 보냅니다. 수고했다.
+    아쉬운 점도 많았던 시간 동안 많은 것을 생각하고 배워갑니다. 발판으로 삼아 더 멋진 모습으로 성장하도록 하겠습니다.
+
+%%
+%% 이력서 시작
+%% Curriculum Vitae
+%%
+% @command curriculumvitae 이력서
+% @options [default: 클래스 옵션 korean|english ]
+% - korean : 한글이력서 | english : 영문이력서
+\curriculumvitae[korean]
+
+    % @environment personaldata 개인정보
+    % @command     name         이름
+        % input data only you want
+    \begin{personaldata}
+        \name       {Sueyoung Oh}
+    \end{personaldata}
+
+    % @environment education 학력
+    % @options [default: (none)] - 수학기간을 입력
+    \begin{education}
+        \item[2009. 3.\ --\ 2013. 2.] Department of Computer Science and Engineering, Inha University (B.S.)
+        \item[2013. 3.\ --\ 2016. 2.] Department of Computer Science and Engineering, Pohang University of Science and Technology (M.S.)
+    \end{education}
+
+    % @environment experience 경력
+    % @options [default: (none)] - 해당기간을 입력
+   \begin{experience}
+        \item[2013. 4.\ --\ 2013. 12.] Developed a finger sign detection system (LG~Electronics~Inc.)
+   \end{experience}
+
+    % @environment activity 학회활동
+    % @options [default: (none)] - 활동내용을 입력
+    %\begin{affiliation}
+    %    \item[] Computer Vision Lab., Department of Computer Science and Engineering, Pohang University of Science and Technology
+    %\end{affiliation}
+
+    \afterpage{\blankpage}
+
+%% 본문 끝
+\end{document}
