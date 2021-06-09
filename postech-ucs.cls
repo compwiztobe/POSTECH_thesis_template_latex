@@ -1,4 +1,4 @@
-﻿% -*- TeX:UTF-8 -*-
+% -*- TeX:UTF-8 -*-
 %% POSTECH Thesis Template for LaTeX
 %%
 %% @version      0.1
@@ -101,7 +101,7 @@
 
 %% 편집용지 설정
 \usepackage[paperheight=255mm,paperwidth=185mm,
-			left=25mm,right=25mm,top=20mm,bottom=15mm]{geometry}
+            left=25mm,right=25mm,top=20mm,bottom=15mm]{geometry}
 
 %% ver0.2 : blank page 정의
 \usepackage{afterpage}
@@ -113,7 +113,7 @@
 
 %% 줄간격 설정
 %\renewcommand{\baselinestretch}{1.3}
-\linespread{1.7}			% ver0.2 : 줄간격 170 이상
+\linespread{1.7}            % ver0.2 : 줄간격 170 이상
 
 %% 본문이 영어로 되어있는지 한글로 되어있는지 설정
 \newcommand{\@korean}{korean}
@@ -196,7 +196,7 @@
 \newcommand{\@childDeptNameKor}{}       % 학과/전공 둘째줄
 \newcommand{\@parentDeptNameEng}{}      % 학과/전공 첫째줄
 \newcommand{\@childDeptNameEng}{}       % 학과/전공 둘째줄
-\newcommand{\@programDeptNameEng}{}		%학위명
+\newcommand{\@programDeptNameEng}{}     %학위명
 \newcommand{\@affFullNameKor}{}      % 학과/전공 한글이름
 \newcommand{\@affFullNameEng}{}      % 학과/전공 영문이름
 \newcommand{\@affFullNameEngCover}{} % 학과/전공 영문이름(표지용)
@@ -204,16 +204,16 @@
 \newcommand{\@degreePrefix}{\ifthenelse{\boolean{@isDoctor}}{D}{M}}
 \newcommand{\department}[2] {%
     \ifthenelse{\equal{#1}{MA}}
-	    {\renewcommand{\@degreeCode}{\@degreePrefix #1}
-    	\renewcommand{\@childDeptNameKor}{수학과}
-    	\renewcommand{\@childDeptNameEng}{Department of Mathematics}
-		\renewcommand{\@programDeptNameEng}{Mathematics}
-    	\renewcommand{\@degreeField}{#2}} {}
+        {\renewcommand{\@degreeCode}{\@degreePrefix #1}
+        \renewcommand{\@childDeptNameKor}{수학과}
+        \renewcommand{\@childDeptNameEng}{Department of Mathematics}
+        \renewcommand{\@programDeptNameEng}{Mathematics}
+        \renewcommand{\@degreeField}{#2}} {}
     \ifthenelse{\equal{#1}{PH}}
         {\renewcommand{\@degreeCode}{\@degreePrefix #1}
          \renewcommand{\@childDeptNameKor}{물리학과}
          \renewcommand{\@childDeptNameEng}{Department of Physics}
-   	    \renewcommand{\@programDeptNameEng}{Physics}
+        \renewcommand{\@programDeptNameEng}{Physics}
          \renewcommand{\@degreeField}{#2}} {}
     \ifthenelse{\equal{#1}{CH}}
         {\renewcommand{\@degreeCode}{\@degreePrefix #1}
@@ -226,19 +226,19 @@
          \renewcommand{\@childDeptNameKor}{생명과학과}
          \renewcommand{\@childDeptNameEng}{Department of Life Sciences}
          \renewcommand{\@programDeptNameEng}{Life Science}
-         \renewcommand{\@degreeField}{#2}} {}    	 	
+         \renewcommand{\@degreeField}{#2}} {}
     \ifthenelse{\equal{#1}{MS}}
-	    {\renewcommand{\@degreeCode}{\@degreePrefix #1}
-    	\renewcommand{\@childDeptNameKor}{신소재공학과}
-    	\renewcommand{\@childDeptNameEng}{Department of Material Science and Engineering}
+        {\renewcommand{\@degreeCode}{\@degreePrefix #1}
+        \renewcommand{\@childDeptNameKor}{신소재공학과}
+        \renewcommand{\@childDeptNameEng}{Department of Material Science and Engineering}
         \renewcommand{\@programDeptNameEng}{Material Science and Engineering}
-    	\renewcommand{\@degreeField}{#2}} {}      	
+        \renewcommand{\@degreeField}{#2}} {}
     \ifthenelse{\equal{#1}{ME}}
         {\renewcommand{\@degreeCode}{\@degreePrefix #1}
          \renewcommand{\@childDeptNameKor}{기계공학과}
          \renewcommand{\@childDeptNameEng}{Department of Mechanical Engineering}
          \renewcommand{\@programDeptNameEng}{Mechanical Engineering}
-         \renewcommand{\@degreeField}{#2}} {}      	
+         \renewcommand{\@degreeField}{#2}} {}
     \ifthenelse{\equal{#1}{EE}}
         {\renewcommand{\@degreeCode}{\@degreePrefix #1}
          \renewcommand{\@childDeptNameKor}{전자전기공학과}
@@ -276,11 +276,11 @@
          \renewcommand{\@programDeptNameEng}{Advanced Material Science}
          \renewcommand{\@degreeField}{#2}} {}
      \ifthenelse{\equal{#1}{IBB}}
-	    {\renewcommand{\@degreeCode}{\@degreePrefix #1}
-    	\renewcommand{\@childDeptNameKor}{시스템생명공학과}
-    	\renewcommand{\@childDeptNameEng}{Division of Integrative Bioscience and Engineering}
+        {\renewcommand{\@degreeCode}{\@degreePrefix #1}
+        \renewcommand{\@childDeptNameKor}{시스템생명공학과}
+        \renewcommand{\@childDeptNameEng}{Division of Integrative Bioscience and Engineering}
         \renewcommand{\@programDeptNameEng}{Integrative Bioscience and Engineering}
-    	\renewcommand{\@degreeField}{#2}} {}
+        \renewcommand{\@degreeField}{#2}} {}
      \ifthenelse{\equal{#1}{IBT}}
         {\renewcommand{\@degreeCode}{\@degreePrefix #1}
          \renewcommand{\@childDeptNameKor}{융합생명공학과}
@@ -338,20 +338,20 @@
 
 
     \renewcommand{\@affFullNameKor}{%               % 학과/전공 한글이름
-    	\ifthenelse{\equal{\@parentDeptNameKor}{}}
-    		{\@childDeptNameKor}
-    		{\@parentDeptNameKor, \@childDeptNameKor}
+        \ifthenelse{\equal{\@parentDeptNameKor}{}}
+            {\@childDeptNameKor}
+            {\@parentDeptNameKor, \@childDeptNameKor}
     }
     \renewcommand{\@affFullNameEng}{%               % 학과/전공 영문이름
-        	\ifthenelse{\equal{\@parentDeptNameEng}{}}
-    		{\@childDeptNameEng}
-    		{\@parentDeptNameEng, \@childDeptNameEng}
+            \ifthenelse{\equal{\@parentDeptNameEng}{}}
+            {\@childDeptNameEng}
+            {\@parentDeptNameEng, \@childDeptNameEng}
     }
 
     \renewcommand{\@affFullNameEngCover}{%          % 학과/전공 영문이름
-        	\ifthenelse{\equal{\@parentDeptNameEng}{}}
-    		{\@childDeptNameEng}
-    		{\@parentDeptNameEng \\ \@childDeptNameEng}
+            \ifthenelse{\equal{\@parentDeptNameEng}{}}
+            {\@childDeptNameEng}
+            {\@parentDeptNameEng \\ \@childDeptNameEng}
     }
     \renewcommand{\@degreeName}{%                       % 학위 영문이름
         \ifthenelse{\boolean{@isDoctor}}
@@ -428,7 +428,7 @@
     \renewcommand{\baselinestretch}{1.3}%
    \thispagestyle{empty} \noindent%
     \begin{minipage}[t][][t]{\textwidth}
-   		\vspace{16mm}
+        \vspace{16mm}
         \begin{center}
             \huge
             \if@isDoctor
@@ -436,22 +436,22 @@
             \else
                 \fontsize{16pt}{16pt}\selectfont Master's Thesis \\
             \fi
-			\vspace{21mm}
+            \vspace{21mm}
             \fontsize{21pt}{21pt}\selectfont \@titleEng
         \end{center}
     \end{minipage}\vfill%\\[30mm]
 \thispagestyle{empty} \noindent%
     \begin{minipage}[b][][b]{\textwidth}
         \begin{center}
-			\fontsize{16pt}{9mm}\selectfont \@authorEng\ (\@authorKor)\\
+            \fontsize{16pt}{9mm}\selectfont \@authorEng\ (\@authorKor)\\
             \@affFullNameEngCover \\
-			\@postech \\
-			\@gradYear
+            \@postech \\
+            \@gradYear
         \end{center}
-        \vspace{12mm}        
+        \vspace{12mm}
     \end{minipage}
     \afterpage{\null\thispagestyle{empty}\newpage}           % ver0.2 : 첫 장 백색별지 추가 (지침사항은 아님)
-    \newpage   
+    \newpage
 }
 
 %%
@@ -460,9 +460,9 @@
 \renewcommand{\maketitle}{%
     \renewcommand{\baselinestretch}{1.3}%
     \thispagestyle{empty} \noindent
-	%\\[0mm]
+    %\\[0mm]
     \begin{minipage}[t][][t]{\textwidth}
-	    \vspace{15mm}
+        \vspace{15mm}
         \begin{center}
             \fontsize{21pt}{21pt}\selectfont  \@titleKor \\
             \vspace{21pt}       % ver0.2 : 제목 줄간격
@@ -481,11 +481,11 @@
 %    \hyphenation{institute department division program} % word division 방지
     \thispagestyle{empty} \noindent
     \begin{minipage}[t][][t]{\textwidth}
-    	\vspace{15mm}
+        \vspace{15mm}
         \begin{center}
             \fontsize{21pt}{21pt}\selectfont \@titleEng \\
          \vspace{15mm}
-		 \Large by
+         \Large by
          \end{center}
     \end{minipage}\\[15mm]
     \thispagestyle{empty} \noindent
@@ -499,36 +499,36 @@
     \end{minipage}\\[15mm]
     \thispagestyle{empty} \noindent
     \begin{minipage}[t][][t]{\textwidth}
-    	\begin{center}
-    		\Large
-    		\if@isDoctor
-				A dissertation submitted to the faculty of the \@postech\
-				in partial fulfillment of the requirements
-				for the degree of Doctor of philosophy in the \@programDeptNameEng
+        \begin{center}
+            \Large
+            \if@isDoctor
+                A dissertation submitted to the faculty of the \@postech\
+                in partial fulfillment of the requirements
+                for the degree of Doctor of philosophy in the \@programDeptNameEng
             \else
-				A thesis submitted to the faculty of the \@postech\
-				in partial fulfillment of the requirements
-				for the degree of \@degreeName in the \@programDeptNameEng
+                A thesis submitted to the faculty of the \@postech\
+                in partial fulfillment of the requirements
+                for the degree of \@degreeName in the \@programDeptNameEng
             \fi
-	    \end{center}
+        \end{center}
     \end{minipage}\\[30mm]
     \begin{minipage}[t][][t]{\textwidth}
         \begin{center}
             \Large
-			Pohang, Korea \\
-	        \@approvalMonth. \@approvalDay. \@approvalYear  \\ % 제출승인일자
-	        Approved by \\
-			 % 학위논문 지도교수 영문이름, 단독지도교수일 경우만 가정.
+            Pohang, Korea \\
+            \@approvalMonth. \@approvalDay. \@approvalYear  \\ % 제출승인일자
+            Approved by \\
+             % 학위논문 지도교수 영문이름, 단독지도교수일 경우만 가정.
             % \@advisorMajorEng \ (Signature) \\
-	        \@advisorMajorEng \ \textcolor{white}{(Signature)} \\ % ver0.2 : 서명란 글씨 흰색 (인쇄용)
-			Academic advisor
+            \@advisorMajorEng \ \textcolor{white}{(Signature)} \\ % ver0.2 : 서명란 글씨 흰색 (인쇄용)
+            Academic advisor
         \end{center}
     \end{minipage}\\[0mm]
 
       % 학위논문 심사완료 검인서
     \newpage \thispagestyle{empty} \noindent
     \begin{minipage}[t][][t]{\textwidth}
-  	    \vspace{15mm}
+        \vspace{15mm}
         \begin{center}
             \fontsize{21pt}{21pt}\selectfont \@titleEng \\          % 학위논문 한글제목
             \vspace{10mm}
@@ -538,10 +538,10 @@
     \end{minipage}\\[10mm]
     \begin{minipage}[t][][t]{\textwidth}
         \begin{center}
-        	\Large The undersigned have examined this \ifthenelse{\boolean{@isDoctor}}{dissertation}{thesis} and hereby certify
+            \Large The undersigned have examined this \ifthenelse{\boolean{@isDoctor}}{dissertation}{thesis} and hereby certify
             that it is worthy of acceptance for a \ifthenelse{\boolean{@isDoctor}}{doctoral}{master's} degree from POSTECH \\
-			\vspace{50mm}		
-	    \end{center}
+            \vspace{50mm}
+        \end{center}
         \begin{flushright}
             \Large
             \@refereeMonth. \@refereeDay. \@refereeYear
@@ -550,7 +550,7 @@
     \begin{minipage}[b][][b]{\textwidth}
         \Large
         \begin{flushright}
-	\begin{tabular}{rll}   % 심사위원명단
+    \begin{tabular}{rll}   % 심사위원명단
                 \@ifundefined{@refereeChief}{}
                     {\\[45pt] Committee Chair & \ \makebox[\width]{\@refereeChief}  & \ \textcolor{white}{(Seal)}}
                 \@ifundefined{@refereeSecond}{}
@@ -587,13 +587,13 @@
     %\raisebox{3pt}
     {\begin{minipage}[t]{\@thesisinfowidth}
         %\normalsize \sffamily
-	    \large
+        \large
         \ifthenelse{\equal{\@authorKorFN}{}}
         {}
         {\@authorKorFN\ \@authorKorGN.}           % 저자 한글이름
         \@authorEngGN\ \@authorEngFN \\           % 저자 영문이름
         \@titleEng,  \\
-	    \@titleKor  \\                 % 학위논문 영문 및 한글제목
+        \@titleKor  \\                 % 학위논문 영문 및 한글제목
         \@affFullNameEng, \@gradYear, \\          % 학과/전공명, 졸업년도
         \@lastPage p,                            % 총 페이지 수 -> 참고문헌 끝
         \@ifundefined{@advisorCooprEng}         % 공동지도교수 유무판정
@@ -646,7 +646,7 @@
 
 \newcommand{\summarykorean}{%           % ver 0.1 요약문 생성 명령
     \renewcommand{\linebreak}{\ }      % 차후 버젼에서 삭제 예정
-   	\setlength{\parindent}{10pt}
+    \setlength{\parindent}{10pt}
     \ifx\@textlang\@english
         \chapter*{요 약 문}
         \if@PDFdoc\phantomsection\fi\addcontentsline{toc}{chapter}{Summary (in Korean)}
@@ -662,7 +662,7 @@
 %%
 \newcommand{\acknowledgement}[1][default]{%     % 이력서
    % \thispagestyle{empty} \noindent             % ver0.2 : 쪽 번호없음
-	\setlength{\parindent}{10pt}
+    \setlength{\parindent}{10pt}
     \newcommand{\@acklang}{#1}
     \ifthenelse{\equal{#1}{default}}            % 아무 옵션을 설정하지 않으면
         {\let\@acklang\@textlang}{}           % 논문 언어대로 이력서 언어설정
@@ -746,15 +746,15 @@
     }{\end{list}}
 
     \newenvironment{education}{%               % 학력
-        \thispagestyle{empty}   
+        \thispagestyle{empty}
         \vspace*{10mm} \noindent
 %        \ifx\@ccvlang\@korean
 %            \begin{center}
 %                \makebox[2cm][s]{\textbf{\large 학 력}}
 %            \end{center}
 %        \else \textbf{\large Educations} \fi
-		\begin{center}\large\textbf{Education}\end{center}
-		\vspace{3mm}
+        \begin{center}\large\textbf{Education}\end{center}
+        \vspace{3mm}
         \begin{list}{}{%
             \setlength{\labelwidth}{95pt}
             \setlength{\leftmargin}{\labelwidth}
@@ -771,8 +771,8 @@
 %                \makebox[2cm][s]{\textbf{\large 경 력}}
 %            \end{center}
 %        \else \textbf{\large Career} \fi
-		\begin{center}\large\textbf{Experience}\end{center}
-		\vspace{3mm}
+        \begin{center}\large\textbf{Experience}\end{center}
+        \vspace{3mm}
         \begin{list}{}{%
             \setlength{\labelwidth}{95pt}
             \setlength{\leftmargin}{\labelwidth}
@@ -783,15 +783,15 @@
 
     \newcounter{itemnum1}
     \newenvironment{affiliation}{%                % 학회활동
-        \thispagestyle{empty}               	% ver0.2 : 쪽 번호없음
-        \vspace*{10mm} \noindent		% ver0.2 : 줄 간격 조정            
+        \thispagestyle{empty}                   % ver0.2 : 쪽 번호없음
+        \vspace*{10mm} \noindent        % ver0.2 : 줄 간격 조정
 %        \ifx\@ccvlang\@korean
 %            \begin{center}
 %                \makebox[2cm][s]{\textbf{\large 학 회 활 동}}
 %            \end{center}
 %        \else \textbf{\large Academic Activities} \fi
-		\begin{center}\large\textbf{Affiliation}\end{center}
-		\vspace{3mm}
+        \begin{center}\large\textbf{Affiliation}\end{center}
+        \vspace{3mm}
         \begin{list}{}{%
             \usecounter{itemnum1}
             \setlength{\labelwidth}{1.5em}
@@ -850,8 +850,8 @@
 
 \renewcommand{\thechapter}{\Roman{chapter}} %Enumerate chapter as Roman number
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}} %Enumerate section as arabic number
-\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}} 	% ver0.2 : figure 번호를 아라비아 숫자로 표기
-\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}	% ver0.2 : table 번호를 아라비아 숫자로 표기	
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}     % ver0.2 : figure 번호를 아라비아 숫자로 표기
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}   % ver0.2 : table 번호를 아라비아 숫자로 표기
 \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
 
 \renewcommand\chapter{%
@@ -890,7 +890,7 @@
 %        {Chapter\hspace{1.4ex}\thechapter.\hspace{1ex}}
 %        {\thechapter.\hspace{1ex}}
     \thechapter.\hspace{1ex}
-	#1\par}
+    #1\par}
     \vspace*{20\p@}
 }
 \def\@schapter#1{%
@@ -910,13 +910,13 @@
 %% \tableofcontents 재정의 - report 클래스로부터 복사하여 일부 수정
 %%
 \renewcommand\tableofcontents{%
-	\thispagestyle{plain}
+    \thispagestyle{plain}
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
         \@restonecolfalse
     \fi
-	\chapter*{\contentsname
+    \chapter*{\contentsname
         \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
     \pagenumbering{Roman}                         % roman 페이지번호로 복원
     \setcounter{page}{\value{pagemarker}}         % pagemarker에 저장된 값으로
@@ -931,7 +931,7 @@
 %% \listoftables 재정의 - report 클래스로부터 복사하여 일부 수정
 %%
 \renewcommand\listoftables{%
-	\thispagestyle{plain}
+    \thispagestyle{plain}
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
@@ -952,7 +952,7 @@
 %% \listoffigures 재정의 - report 클래스로부터 복사하여 일부 수정
 %%
 \renewcommand\listoffigures{%
-	\thispagestyle{plain}
+    \thispagestyle{plain}
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else

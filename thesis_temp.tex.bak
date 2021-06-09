@@ -95,47 +95,47 @@
 %
 % department code table
 %
-% PH		// 물리학과 Department of Physics
-% MAS	// 수리과학과 Department of Mathematical Sciences
-% CH 	// 화학과 Department of Chemistry
-% NST	// 나노과학기술대학원 Graduate School of Nanoscience & Technology
-% NT		// 나노과학기술 학제전공 Nano Science and Technology Program
-% BS  	// 생명과학과 Department of Biological Sciences
-% BIS	// 바이오및뇌공학과 Department of Bio and Brain Engineering
-% MSE	// 의과학대학원 Graduate School of Medical Science and Engineering
-% BM 	// 의과학 학제전공 Biomedical Science and Engineering Program
-% CE 	// 건설및환경공학과 Department of Civil and Environmental Engineering
-% ME 	// 기계공학전공 Division of Mechanical Engineering
-% AE 	// 항공우주공학전공 Division of Aerospace Engineering
-% OSE 	// 해양시스템공학전공 Department of Ocean Systems Engineering
-% CBE 	// 생명화학공학과 Department of Chemical and Biomolecular Engineering
-% MS 	// 신소재공학과 Department of Materials Science and Engineering
-% NQE 	// 원자력 및 양자공학과 Department of Nuclear and Quantum Engineering
-% EEW 	// EEWS 대학원 Graduate School of EEWS
-% PSE 	// 고분자 학제전공 Polymer Science and Engineering Program
-% SPE	// 우주탐사공학 학제전공 Space Exploration Engineering Program
-% ENY 	// 환경?에너지공학 학제전공 Environmental and Energy Technology Program
-% MSB 	// 경영과학과 Department of Management Science
-% IT 		// 경영과학과(IT경영학) Department of Management Science (IT Business)
-% BAP 	// 경영전문대학원프로그램 Master of Business Administration Program
-% ITP 	// 글로벌IT기술대학원프로그램 Global Information & Telecommunication Technology Program
-% ITM 	// 기술경영전문대학원 Graduate School of Innovation & Technology Management
-% GCT 	// 문화기술대학원 Graduate School of Culture Technology
-% CT 	// 문화기술(CT) 학제전공 Culture Technology Program
-% EE 	// 전기 및 전자공학과 Department of Electrical Engineering
-% CS 	// 전산학과 Department of Computer Science
-% ICE 	// 정보통신공학과 Department of Information and Communications Engineering
-% IE 		// 산업및시스템공학과 Department of Industrial & Systems Engineering
-% KSE 	// 지식서비스공학과 Department of Knowledge Service Engineering
-% ID 		// 산업디자인학과 Department of Industrial Design
-% RE 	// 로봇공학 학제전공 Robotics Program
-% STE 	// 반도체 학제전공 Semiconductor Technology Educational Program
-% SEP 	// 소프트웨어공학프로그램 Software Engineering Program
-% TE 	// 정보통신공학 학제전공 Telecommunication Engineering Program
-% EML 	// e-매뉴팩쳐링리더십 학제전공 e-Manufacturing Leadership Program
-% MT 	// 경영공학과 Department of Management Engineering
-% TM 	// 테크노경영전공 Techno-MBA Program
-% FIN 	// 금융전문대학원 Graduate School of Finance and Accounting
+% PH        // 물리학과 Department of Physics
+% MAS   // 수리과학과 Department of Mathematical Sciences
+% CH    // 화학과 Department of Chemistry
+% NST   // 나노과학기술대학원 Graduate School of Nanoscience & Technology
+% NT        // 나노과학기술 학제전공 Nano Science and Technology Program
+% BS    // 생명과학과 Department of Biological Sciences
+% BIS   // 바이오및뇌공학과 Department of Bio and Brain Engineering
+% MSE   // 의과학대학원 Graduate School of Medical Science and Engineering
+% BM    // 의과학 학제전공 Biomedical Science and Engineering Program
+% CE    // 건설및환경공학과 Department of Civil and Environmental Engineering
+% ME    // 기계공학전공 Division of Mechanical Engineering
+% AE    // 항공우주공학전공 Division of Aerospace Engineering
+% OSE   // 해양시스템공학전공 Department of Ocean Systems Engineering
+% CBE   // 생명화학공학과 Department of Chemical and Biomolecular Engineering
+% MS    // 신소재공학과 Department of Materials Science and Engineering
+% NQE   // 원자력 및 양자공학과 Department of Nuclear and Quantum Engineering
+% EEW   // EEWS 대학원 Graduate School of EEWS
+% PSE   // 고분자 학제전공 Polymer Science and Engineering Program
+% SPE   // 우주탐사공학 학제전공 Space Exploration Engineering Program
+% ENY   // 환경?에너지공학 학제전공 Environmental and Energy Technology Program
+% MSB   // 경영과학과 Department of Management Science
+% IT        // 경영과학과(IT경영학) Department of Management Science (IT Business)
+% BAP   // 경영전문대학원프로그램 Master of Business Administration Program
+% ITP   // 글로벌IT기술대학원프로그램 Global Information & Telecommunication Technology Program
+% ITM   // 기술경영전문대학원 Graduate School of Innovation & Technology Management
+% GCT   // 문화기술대학원 Graduate School of Culture Technology
+% CT    // 문화기술(CT) 학제전공 Culture Technology Program
+% EE    // 전기 및 전자공학과 Department of Electrical Engineering
+% CS    // 전산학과 Department of Computer Science
+% ICE   // 정보통신공학과 Department of Information and Communications Engineering
+% IE        // 산업및시스템공학과 Department of Industrial & Systems Engineering
+% KSE   // 지식서비스공학과 Department of Knowledge Service Engineering
+% ID        // 산업디자인학과 Department of Industrial Design
+% RE    // 로봇공학 학제전공 Robotics Program
+% STE   // 반도체 학제전공 Semiconductor Technology Educational Program
+% SEP   // 소프트웨어공학프로그램 Software Engineering Program
+% TE    // 정보통신공학 학제전공 Telecommunication Engineering Program
+% EML   // e-매뉴팩쳐링리더십 학제전공 e-Manufacturing Leadership Program
+% MT    // 경영공학과 Department of Management Engineering
+% TM    // 테크노경영전공 Techno-MBA Program
+% FIN   // 금융전문대학원 Graduate School of Finance and Accounting
 %
 % science: 이학 | engineering: 공학 | business : 경영학
 % 박사논문의 경우는 학위종류를 입력하지 않아도 됩니다.
@@ -907,7 +907,7 @@ Since this approach simply brings the pose data from source regions, it can be c
 다음으로는, 파트 기반의 영역 매칭 알고리즘을 제안한다. 제안 하는 매칭 알고리즘은 대상 영상의 일부 영역을 비교 영상에서 추출한 영역들과 매칭하고, 그 중에서 높은 점수의 매칭쌍이 갖고 있는 어노테이션(annotation) 정보를 이용하여 최종적으로 사람의 자세를 추정한다. 먼저, 대상 영상에서 후보 영역을 추출하고 이 영역들을 비교 영상에서 추출된 시맨틱 파트 영역들과 매칭을 수행한다. 두 영역의 유사도를 이용하여 매칭 점수(matching score)를 정의한다. 하나의 대상 영역에 대해 최고 매칭 점수를 만드는 하나의 비교 영역을 찾아, 최종 매치 쌍을 결정한다. 이 매치들 중에서 각 시맨틱 파트에 대해 최고 점수를 갖는 매치를 최고 매치(the best match)로 결정한다. 매칭 점수는 매칭에 포함된 후보 영역의 신뢰도(confidence)가 된다. 최고 매치에 포함된 후보 영역은 총 시맨틱 파트 개수 만큼이 되는데, 이 후보 영역은 최종적으로 사람 자세를 구성하는 파트 요소가 된다. 관절 포인트는 해당 관절이 포함된 시맨틱 파트 중, 가장 높은 영역 신뢰도를 갖는 영역의 매치 짝으로부터 그 위치가 결정된다. 모든 관절 포인트의 위치가 결정되면 신체 전체에 대한 자세 추정이 완료된다.
 
 제안한 방법은 기존의 방법과 비교하였을 때, 몸체에서 멀리 떨어진 관절들에 대해서는 비교적 높은 성능을 보였다. 이는 계층적인 그래프 모델을 사용하지 않고, 하나의 영상 영역에 대해 모든 신체 파트를 동일하게 다루기 때문이다. 하지만, 데이터의 개수가 적은 데이터셋의 경우, 비교 영상들이 대상 영상의 포즈와 부분적으로 닮은 영역을 충분히 가지고 있지 않아 정확한 자세 추정이 불가능하다. 제안한 자세 추정 알고리즘은 의미적 파트를 사용하여, 추정이 어려운 복잡한 자세와 자체 중첩(self-occlusion)에 강력하다. 영역 매칭 방법을 사용하므로 검출기(detector)를 위한 학습 시간이 소요되지 않고, 대용량 데이터일 때 보다 효율적이고 높은 성능으로 자세를 추정할 수 있다.
-	
+
 \end{summarykorean}
 
 %%
